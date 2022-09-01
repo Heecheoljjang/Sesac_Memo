@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		975E99CE28C080920072AC5D /* MemoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975E99CD28C080920072AC5D /* MemoListView.swift */; };
+		975E99D128C08C430072AC5D /* MemoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975E99D028C08C430072AC5D /* MemoListTableViewCell.swift */; };
+		975E99D328C08C9F0072AC5D /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975E99D228C08C9F0072AC5D /* UITableViewCell+Extension.swift */; };
+		975E99D528C08D760072AC5D /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975E99D428C08D760072AC5D /* BaseTableViewCell.swift */; };
 		97AC153328BF658B007089FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AC153228BF658B007089FD /* AppDelegate.swift */; };
 		97AC153528BF658B007089FD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AC153428BF658B007089FD /* SceneDelegate.swift */; };
 		97AC153728BF658B007089FD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AC153628BF658B007089FD /* ViewController.swift */; };
@@ -28,6 +32,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		975E99CD28C080920072AC5D /* MemoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListView.swift; sourceTree = "<group>"; };
+		975E99D028C08C430072AC5D /* MemoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListTableViewCell.swift; sourceTree = "<group>"; };
+		975E99D228C08C9F0072AC5D /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
+		975E99D428C08D760072AC5D /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		97AC152F28BF658B007089FD /* Sesac_Memo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sesac_Memo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97AC153228BF658B007089FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97AC153428BF658B007089FD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +74,14 @@
 			children = (
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		975E99CF28C0842D0072AC5D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				975E99D028C08C430072AC5D /* MemoListTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		97AC152628BF658B007089FD = {
@@ -118,6 +134,7 @@
 			children = (
 				97AC154A28BF9AAC007089FD /* BaseView.swift */,
 				97AC154C28BF9AB4007089FD /* BaseViewController.swift */,
+				975E99D428C08D760072AC5D /* BaseTableViewCell.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -160,6 +177,7 @@
 		97AC156428BFCC23007089FD /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				975E99D228C08C9F0072AC5D /* UITableViewCell+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -167,7 +185,9 @@
 		97AC156728BFD0D5007089FD /* MemoList */ = {
 			isa = PBXGroup;
 			children = (
+				975E99CF28C0842D0072AC5D /* Cell */,
 				97AC156828BFD0E4007089FD /* MemoListViewController.swift */,
+				975E99CD28C080920072AC5D /* MemoListView.swift */,
 			);
 			path = MemoList;
 			sourceTree = "<group>";
@@ -252,9 +272,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				975E99D528C08D760072AC5D /* BaseTableViewCell.swift in Sources */,
 				97AC153728BF658B007089FD /* ViewController.swift in Sources */,
+				975E99D328C08C9F0072AC5D /* UITableViewCell+Extension.swift in Sources */,
 				97AC155028BF9AD9007089FD /* RealmModel.swift in Sources */,
 				97AC153328BF658B007089FD /* AppDelegate.swift in Sources */,
+				975E99D128C08C430072AC5D /* MemoListTableViewCell.swift in Sources */,
+				975E99CE28C080920072AC5D /* MemoListView.swift in Sources */,
 				97AC156328BFC81D007089FD /* PopUpViewController.swift in Sources */,
 				97AC154B28BF9AAC007089FD /* BaseView.swift in Sources */,
 				97AC153528BF658B007089FD /* SceneDelegate.swift in Sources */,

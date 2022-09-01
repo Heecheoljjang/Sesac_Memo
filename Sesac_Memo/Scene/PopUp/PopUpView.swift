@@ -14,7 +14,7 @@ final class PopUpView: BaseView {
     
     let outerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .darkGray
+        view.backgroundColor = .systemGray6
         view.layer.cornerRadius = 10
         
         return view
