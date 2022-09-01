@@ -22,6 +22,8 @@ final class MemoListViewController: BaseViewController {
         super.viewDidLoad()
         
         setUpController()
+        
+
     }
     
     //MARK: 팝업 화면 띄우기
@@ -55,19 +57,24 @@ final class MemoListViewController: BaseViewController {
         
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
         
         title = "123123개의 메모"
         
         //서치 컨트롤러 적용 자료
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.placeholder = "검색"
+        searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
+        searchController.searchBar.tintColor = .systemOrange
         navigationItem.searchController = searchController
         
         //툴바 적용
         navigationController?.isToolbarHidden = false
         navigationController?.toolbar.tintColor = .systemOrange
+        navigationController?.toolbar.backgroundColor = .systemGray6
         let addMemoButton = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"), style: .plain, target: self, action: #selector(presentWritingView))
-        navigationController?.toolbarItems = [addMemoButton]
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        toolbarItems = [flexibleSpace, addMemoButton]
     }
     
     //MARK: - @objc

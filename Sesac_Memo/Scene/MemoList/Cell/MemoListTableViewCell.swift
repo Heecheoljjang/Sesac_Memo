@@ -13,7 +13,7 @@ final class MemoListTableViewCell: BaseTableViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .systemFont(ofSize: 18, weight: .bold)
         
         return label
     }()
@@ -46,13 +46,16 @@ final class MemoListTableViewCell: BaseTableViewCell {
         super.setUpContraints()
         
         titleLabel.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview().inset(16)
-            make.top.equalTo(self)
-            make.bottom.equalTo(bottomLabel.snp.top).offset(12)
+            make.horizontalEdges.equalToSuperview().inset(20)
+            make.top.equalTo(self).offset(16)
+            make.height.equalTo(28)
+            //make.bottom.equalTo(bottomLabel.snp.top).offset(12)
         }
         
         bottomLabel.snp.makeConstraints { make in
             make.leading.trailing.equalTo(titleLabel)
+            make.top.equalTo(titleLabel.snp.bottom).offset(4)
+            make.height.equalTo(20)
             make.bottom.equalTo(self).offset(-16)
         }
     }

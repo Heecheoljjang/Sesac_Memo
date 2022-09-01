@@ -27,7 +27,6 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.titleLabel.text = "동해물과 백두산이동해물과 백두산이동해물과 백두산이동해물과 백두산이동해물과 백두산이"
         cell.bottomLabel.text = "동해물과 백두산이" + "  " + "동해물과 백두산이동해물과 백두산이동해물과 백두산이"
-        
         return cell
     }
     
@@ -40,6 +39,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 104
+        return 84
     }
+
 }
