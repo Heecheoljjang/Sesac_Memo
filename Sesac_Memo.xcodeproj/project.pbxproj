@@ -22,6 +22,9 @@
 		97AC155828BF9C52007089FD /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 97AC155728BF9C52007089FD /* Realm */; };
 		97AC155A28BF9C52007089FD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 97AC155928BF9C52007089FD /* RealmSwift */; };
 		97AC155D28BFB1A5007089FD /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AC155C28BFB1A5007089FD /* Error.swift */; };
+		97AC156128BFC812007089FD /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AC156028BFC812007089FD /* PopUpView.swift */; };
+		97AC156328BFC81D007089FD /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AC156228BFC81D007089FD /* PopUpViewController.swift */; };
+		97AC156928BFD0E4007089FD /* MemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AC156828BFD0E4007089FD /* MemoListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +42,9 @@
 		97AC154F28BF9AD9007089FD /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		97AC155128BF9AF1007089FD /* MemoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoRepository.swift; sourceTree = "<group>"; };
 		97AC155C28BFB1A5007089FD /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		97AC156028BFC812007089FD /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
+		97AC156228BFC81D007089FD /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		97AC156828BFD0E4007089FD /* MemoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +61,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		975E99CA28C06ED00072AC5D /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		97AC152628BF658B007089FD = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +87,9 @@
 		97AC153128BF658B007089FD /* Sesac_Memo */ = {
 			isa = PBXGroup;
 			children = (
+				975E99CA28C06ED00072AC5D /* Protocol */,
+				97AC156428BFCC23007089FD /* Extension */,
+				97AC155E28BFC7EF007089FD /* Scene */,
 				97AC155B28BFB19E007089FD /* Error */,
 				97AC154E28BF9ACF007089FD /* Realm */,
 				97AC154728BF98D0007089FD /* Utility */,
@@ -121,6 +137,39 @@
 				97AC155C28BFB1A5007089FD /* Error.swift */,
 			);
 			path = Error;
+			sourceTree = "<group>";
+		};
+		97AC155E28BFC7EF007089FD /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				97AC156728BFD0D5007089FD /* MemoList */,
+				97AC155F28BFC7F8007089FD /* PopUp */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		97AC155F28BFC7F8007089FD /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				97AC156028BFC812007089FD /* PopUpView.swift */,
+				97AC156228BFC81D007089FD /* PopUpViewController.swift */,
+			);
+			path = PopUp;
+			sourceTree = "<group>";
+		};
+		97AC156428BFCC23007089FD /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		97AC156728BFD0D5007089FD /* MemoList */ = {
+			isa = PBXGroup;
+			children = (
+				97AC156828BFD0E4007089FD /* MemoListViewController.swift */,
+			);
+			path = MemoList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,8 +255,11 @@
 				97AC153728BF658B007089FD /* ViewController.swift in Sources */,
 				97AC155028BF9AD9007089FD /* RealmModel.swift in Sources */,
 				97AC153328BF658B007089FD /* AppDelegate.swift in Sources */,
+				97AC156328BFC81D007089FD /* PopUpViewController.swift in Sources */,
 				97AC154B28BF9AAC007089FD /* BaseView.swift in Sources */,
 				97AC153528BF658B007089FD /* SceneDelegate.swift in Sources */,
+				97AC156928BFD0E4007089FD /* MemoListViewController.swift in Sources */,
+				97AC156128BFC812007089FD /* PopUpView.swift in Sources */,
 				97AC155228BF9AF1007089FD /* MemoRepository.swift in Sources */,
 				97AC154928BF98F2007089FD /* MemoModel.swift in Sources */,
 				97AC155D28BFB1A5007089FD /* Error.swift in Sources */,
