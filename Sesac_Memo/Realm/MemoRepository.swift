@@ -29,11 +29,11 @@ final class UserMemoRepository: UserMemoRepositoryType {
     }
     
     func fetch(isFixed: Bool) -> Results<UserMemo> {
-        return localRealm.objects(UserMemo.self).filter("isFixed == \(isFixed)")
+        return localRealm.objects(UserMemo.self).filter("isFixed == \(isFixed)").sorted(byKeyPath: "registerDate", ascending: true)
     }
     
     func fetchSearch(keyword: String) -> Results<UserMemo> {
-        return localRealm.objects(UserMemo.self).filter("memoContent CONTAINS[c] '\(keyword)'")
+        return localRealm.objects(UserMemo.self).filter("memoContent CONTAINS[c] '\(keyword)'").sorted(byKeyPath: "registerDate", ascending: true)
     }
     
     func addMemo(memo: UserMemo) {
