@@ -116,17 +116,17 @@ PK를 날짜 문자열로 지정해주는 것 구현해야됨.
 - 테이블뷰 헤더 설정
 - 코드베이스로 구현할 때 스토리보드 삭제
 - 테이블뷰 스타일은 처음에 이니셜라이즈 할 때 설정하는 것.
-    '''
+    ~~~
     let view = UITableView(frame: CGRect.zero, style: .insetGrouped)
-    '''
+    ~~~
 - 네비게이션바 LargeTitle
-    '''
+    ~~~
     navigationController?.navigationBar.prefersLargeTitles = true
-    '''
+    ~~~
 - 서치 컨트롤러 취소 버튼 변경
-    '''
+    ~~~
     searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
-    '''
+    ~~~
 - 툴바 설정할 때 오른쪽에 버튼을 하나만 두더라도 flexible Space 필요
 
 
