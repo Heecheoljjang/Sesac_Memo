@@ -7,11 +7,22 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 final class MemoListViewController: BaseViewController {
     
     var mainView = MemoListView()
     
+    var repository = UserMemoRepository()
+    
+    var navigationTitle: String = "" {
+        didSet {
+            title = navigationTitle
+        }
+    }
+    
+    var tasks: Results<UserMemo>!
+        
     private let userDefaults = UserDefaults.standard
     
     override func loadView() {
@@ -20,10 +31,17 @@ final class MemoListViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationTitle = "\(repository.getDataCount())개의 메모"
         setUpController()
+    
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-
+        //네비게이션 타이틀 수정
+        navigationTitle = "\(repository.getDataCount())개의 메모"
+        print(navigationTitle)
     }
     
     //MARK: 팝업 화면 띄우기
@@ -58,8 +76,8 @@ final class MemoListViewController: BaseViewController {
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationItem.largeTitleDisplayMode = .always
-        
-        title = "123123개의 메모"
+        navigationItem.backButtonTitle = "메모"
+        title = navigationTitle
         
         //서치 컨트롤러 적용 자료
         let searchController = UISearchController(searchResultsController: nil)
@@ -80,6 +98,7 @@ final class MemoListViewController: BaseViewController {
     //MARK: - @objc
     
     @objc private func presentWritingView() {
-        
+        let vc = WritingViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

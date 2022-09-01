@@ -24,6 +24,10 @@ final class UserMemoRepository: UserMemoRepositoryType {
     //인스턴스 생성
     let localRealm = try! Realm()
     
+    func getDataCount() -> Int {
+        return localRealm.objects(UserMemo.self).count
+    }
+    
     func fetch(isFixed: Bool) -> Results<UserMemo> {
         return localRealm.objects(UserMemo.self).filter("isFixed == \(isFixed)")
     }
