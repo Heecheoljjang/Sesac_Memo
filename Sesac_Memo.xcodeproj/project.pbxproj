@@ -11,10 +11,9 @@
 		975E99D128C08C430072AC5D /* MemoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975E99D028C08C430072AC5D /* MemoListTableViewCell.swift */; };
 		975E99D328C08C9F0072AC5D /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975E99D228C08C9F0072AC5D /* UITableViewCell+Extension.swift */; };
 		975E99D528C08D760072AC5D /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975E99D428C08D760072AC5D /* BaseTableViewCell.swift */; };
+		975E99D728C097EC0072AC5D /* MemoListViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975E99D628C097EC0072AC5D /* MemoListViewController+Extension.swift */; };
 		97AC153328BF658B007089FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AC153228BF658B007089FD /* AppDelegate.swift */; };
 		97AC153528BF658B007089FD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AC153428BF658B007089FD /* SceneDelegate.swift */; };
-		97AC153728BF658B007089FD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AC153628BF658B007089FD /* ViewController.swift */; };
-		97AC153A28BF658B007089FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97AC153828BF658B007089FD /* Main.storyboard */; };
 		97AC153C28BF658C007089FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97AC153B28BF658C007089FD /* Assets.xcassets */; };
 		97AC153F28BF658C007089FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97AC153D28BF658C007089FD /* LaunchScreen.storyboard */; };
 		97AC154928BF98F2007089FD /* MemoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AC154828BF98F2007089FD /* MemoModel.swift */; };
@@ -36,11 +35,10 @@
 		975E99D028C08C430072AC5D /* MemoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListTableViewCell.swift; sourceTree = "<group>"; };
 		975E99D228C08C9F0072AC5D /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
 		975E99D428C08D760072AC5D /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		975E99D628C097EC0072AC5D /* MemoListViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoListViewController+Extension.swift"; sourceTree = "<group>"; };
 		97AC152F28BF658B007089FD /* Sesac_Memo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sesac_Memo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97AC153228BF658B007089FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97AC153428BF658B007089FD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		97AC153628BF658B007089FD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		97AC153928BF658B007089FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		97AC153B28BF658C007089FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97AC153E28BF658C007089FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97AC154028BF658C007089FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -115,8 +113,6 @@
 				97AC153B28BF658C007089FD /* Assets.xcassets */,
 				97AC153D28BF658C007089FD /* LaunchScreen.storyboard */,
 				97AC154028BF658C007089FD /* Info.plist */,
-				97AC153628BF658B007089FD /* ViewController.swift */,
-				97AC153828BF658B007089FD /* Main.storyboard */,
 			);
 			path = Sesac_Memo;
 			sourceTree = "<group>";
@@ -178,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				975E99D228C08C9F0072AC5D /* UITableViewCell+Extension.swift */,
+				975E99D628C097EC0072AC5D /* MemoListViewController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -261,7 +258,6 @@
 			files = (
 				97AC153F28BF658C007089FD /* LaunchScreen.storyboard in Resources */,
 				97AC153C28BF658C007089FD /* Assets.xcassets in Resources */,
-				97AC153A28BF658B007089FD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,10 +269,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				975E99D528C08D760072AC5D /* BaseTableViewCell.swift in Sources */,
-				97AC153728BF658B007089FD /* ViewController.swift in Sources */,
 				975E99D328C08C9F0072AC5D /* UITableViewCell+Extension.swift in Sources */,
 				97AC155028BF9AD9007089FD /* RealmModel.swift in Sources */,
 				97AC153328BF658B007089FD /* AppDelegate.swift in Sources */,
+				975E99D728C097EC0072AC5D /* MemoListViewController+Extension.swift in Sources */,
 				975E99D128C08C430072AC5D /* MemoListTableViewCell.swift in Sources */,
 				975E99CE28C080920072AC5D /* MemoListView.swift in Sources */,
 				97AC156328BFC81D007089FD /* PopUpViewController.swift in Sources */,
@@ -294,14 +290,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		97AC153828BF658B007089FD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				97AC153928BF658B007089FD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		97AC153D28BF658C007089FD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -439,7 +427,6 @@
 				INFOPLIST_FILE = Sesac_Memo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -468,7 +455,6 @@
 				INFOPLIST_FILE = Sesac_Memo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
