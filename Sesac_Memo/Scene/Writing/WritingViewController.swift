@@ -22,14 +22,10 @@ final class WritingViewController: BaseViewController {
         super.viewDidLoad()
                 
         setUpController()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
-        mainView.textView.endEditing(false)
+        mainView.textView.becomeFirstResponder()
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
