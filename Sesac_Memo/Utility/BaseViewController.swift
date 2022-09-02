@@ -20,4 +20,13 @@ class BaseViewController: UIViewController {
     func configure() {}
     
     func setUpController() {}
+    
+    func dateToString(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy. MM. dd a HH:mm"
+        dateFormatter.amSymbol = "오전"
+        dateFormatter.pmSymbol = "오후"
+        
+        return dateFormatter.string(from: date)
+    }
 }

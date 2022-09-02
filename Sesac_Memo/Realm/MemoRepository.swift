@@ -11,7 +11,7 @@ import UIKit
 
 protocol UserMemoRepositoryType {
     
-    func fetch(isFixed: Bool) -> Results<UserMemo> //메모
+    func fetch() -> Results<UserMemo> //메모
     func fetchSearch(keyword: String) -> Results<UserMemo> //검색결과
     func addMemo(memo: UserMemo) //데이터 추가
     func updateMemo(memo: UserMemo, title: String, content: String) // 데이터 수정(고정 / 메모 수정)
@@ -24,12 +24,8 @@ final class UserMemoRepository: UserMemoRepositoryType {
     //인스턴스 생성
     let localRealm = try! Realm()
     
-    func getDataCount() -> Int {
-        return localRealm.objects(UserMemo.self).count
-    }
-    
-    func fetch(isFixed: Bool) -> Results<UserMemo> {
-        return localRealm.objects(UserMemo.self).filter("isFixed == \(isFixed)").sorted(byKeyPath: "registerDate", ascending: true)
+    func fetch() -> Results<UserMemo> {
+        return localRealm.objects(UserMemo.self).sorted(byKeyPath: "registerDate", ascending: true)
     }
     
     func fetchSearch(keyword: String) -> Results<UserMemo> {
