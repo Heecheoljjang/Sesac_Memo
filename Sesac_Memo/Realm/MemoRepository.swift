@@ -25,7 +25,7 @@ final class UserMemoRepository: UserMemoRepositoryType {
     let localRealm = try! Realm()
     
     func fetch() -> Results<UserMemo> {
-        return localRealm.objects(UserMemo.self).sorted(byKeyPath: "registerDate", ascending: true)
+        return localRealm.objects(UserMemo.self).sorted(byKeyPath: "registerDate", ascending: false)
     }
     
     func fetchSearch(keyword: String) -> Results<UserMemo> {

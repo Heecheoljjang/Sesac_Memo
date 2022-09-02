@@ -20,11 +20,24 @@ final class WritingViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //키보드띄우기
-        mainView.textView.text = "123123213213213213213213213124321r231r23rwef2wc2f32f321fd32"
-        
+                
         setUpController()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        mainView.textView.endEditing(false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        //만약 적힌게 있다면 저장, 없으면 그냥 pop
+        if mainView.textView.text != "" {
+            let task = UserMemo(memoTitle: "타이틀", memoContent: mainView.textView.text, registerDate: Date())
+            repository.addMemo(memo: task)
+        }
     }
         
     override func setUpController() {
@@ -49,10 +62,7 @@ final class WritingViewController: BaseViewController {
     }
     
     @objc private func doneTapped() {
-        
-        let task = UserMemo(memoTitle: "타이틀", memoContent: mainView.textView.text, registerDate: Date())
-        
-        repository.addMemo(memo: task)
-        print(task)
+        //편집 그만(키보드 내리기)
+        mainView.textView.endEditing(true)
     }
 }

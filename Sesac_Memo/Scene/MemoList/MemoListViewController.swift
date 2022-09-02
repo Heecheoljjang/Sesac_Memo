@@ -31,17 +31,21 @@ final class MemoListViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationTitle = "\(repository.getDataCount())개의 메모"
+
         setUpController()
-    
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        tasks = repository.fetch() // pop될 때도 적용되어야함
+        
+        navigationController?.navigationBar.prefersLargeTitles = true // 작성화면의 라지타이틀 안쓴다는 내용이 적용돼서 매번 작성해줘야함.
+        
         //네비게이션 타이틀 수정
-        navigationTitle = "\(repository.getDataCount())개의 메모"
-        print(navigationTitle)
+        navigationTitle = "\(tasks.count)개의 메모"
+        
+        mainView.tableView.reloadData()
     }
     
     //MARK: 팝업 화면 띄우기
@@ -69,7 +73,6 @@ final class MemoListViewController: BaseViewController {
         mainView.tableView.dataSource = self
 
         //네비게이션바 설정
-        navigationController?.navigationBar.prefersLargeTitles = true
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = .systemGray6
         
