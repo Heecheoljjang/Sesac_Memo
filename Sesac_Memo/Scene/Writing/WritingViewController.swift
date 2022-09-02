@@ -54,7 +54,11 @@ final class WritingViewController: BaseViewController {
     
     //MARK: - @objc
     @objc private func presentActivityController() {
+
+        let text = mainView.textView.text
         
+        let activityController = UIActivityViewController(activityItems: [text ?? ""], applicationActivities: [])
+        present(activityController, animated: true)
     }
     
     @objc private func doneTapped() {
