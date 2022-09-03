@@ -14,14 +14,12 @@ final class MemoListViewController: BaseViewController {
     var mainView = MemoListView()
     
     var repository = UserMemoRepository()
-    
-    var navigationTitle: String = "" {
+
+    var tasks: Results<UserMemo>! {
         didSet {
-            title = navigationTitle
+            title = "\(tasks.count)개의 메모"
         }
     }
-    
-    var tasks: Results<UserMemo>!
         
     private let userDefaults = UserDefaults.standard
     
@@ -45,9 +43,9 @@ final class MemoListViewController: BaseViewController {
         
         navigationController?.navigationBar.prefersLargeTitles = true // 작성화면의 라지타이틀 안쓴다는 내용이 적용돼서 매번 작성해줘야함.
         
-        //네비게이션 타이틀 수정
-        navigationTitle = "\(tasks.count)개의 메모"
-        
+//        //네비게이션 타이틀 수정
+//        navigationTitle = "\(tasks.count)개의 메모"
+//
         mainView.tableView.reloadData()
     }
     
@@ -83,7 +81,7 @@ final class MemoListViewController: BaseViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         navigationItem.backButtonTitle = "메모"
-        title = navigationTitle
+//        title = navigationTitle
         
         //서치 컨트롤러 적용 자료
         let searchController = UISearchController(searchResultsController: SearchViewController())

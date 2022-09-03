@@ -76,15 +76,15 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         
         let delete = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
             if fixedTasks.count == 0 {
-                self.repository.deleteMemo(memo: notFixedTasks[indexPath.row])
+                self.checkCancel(memo: notFixedTasks[indexPath.row])
             } else {
                 if indexPath.section == 0 {
-                    self.repository.deleteMemo(memo: fixedTasks[indexPath.row])
+                    self.checkCancel(memo: fixedTasks[indexPath.row])
                 } else {
-                    self.repository.deleteMemo(memo: notFixedTasks[indexPath.row])
+                    self.checkCancel(memo: notFixedTasks[indexPath.row])
                 }
             }
-            self.navigationTitle = "\(self.tasks.count)개의 메모"
+            //self.navigationTitle = "\(self.tasks.count)개의 메모"
             self.mainView.tableView.reloadData()
         }
         delete.image = UIImage(systemName: "trash")
@@ -108,7 +108,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
                     if fixedTasks.count < 5 {
                         self.repository.updateIsFixed(memo: notFixedTasks[indexPath.row])
                     } else {
-                        self.showAlert(title: "알림", message: "고정은 최대 5개까지만 가능합니다!")
+                        self.showFixAlert(title: "알림", message: "고정은 최대 5개까지만 가능합니다!")
                     }
                 }
             }
@@ -131,5 +131,28 @@ extension MemoListViewController: UISearchResultsUpdating {
         
         let vc = SearchViewController()
         vc.tasks = repository.fetchSearch(keyword: text)
+    }
+}
+
+extension MemoListViewController {
+    
+    private func showFixAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "확인", style: .cancel)
+        alert.addAction(ok)
+        present(alert, animated: true)
+    }
+    
+    private func checkCancel(memo: UserMemo) {
+        let alert = UIAlertController(title: "메모를 제거하시겠습니까??", message: nil, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "확인", style: .destructive) { _ in
+            self.repository.deleteMemo(memo: memo)
+            self.title = "\(self.tasks.count)개의 메모"
+            self.mainView.tableView.reloadData()
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        present(alert, animated: true)
     }
 }

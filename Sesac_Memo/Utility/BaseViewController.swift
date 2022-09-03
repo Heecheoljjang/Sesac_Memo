@@ -20,11 +20,5 @@ class BaseViewController: UIViewController {
     func configure() {}
     
     func setUpController() {}
-    
-    func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "확인", style: .cancel)
-        alert.addAction(ok)
-        present(alert, animated: true)
-    }
+
 }
