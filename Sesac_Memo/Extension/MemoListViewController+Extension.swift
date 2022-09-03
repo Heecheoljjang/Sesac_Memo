@@ -170,12 +170,17 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         let notFixedTasks = tasks.filter("isFixed == false")
         
         if tableView == mainView.tableView {
-            if indexPath.section == 0 {
-                vc.currentTask = fixedTasks[indexPath.row]
-                vc.mainView.textView.text = fixedTasks[indexPath.row].memoTitle + "\n" + fixedTasks[indexPath.row].memoContent
-            } else {
+            if fixedTasks.count == 0 {
                 vc.currentTask = notFixedTasks[indexPath.row]
                 vc.mainView.textView.text = notFixedTasks[indexPath.row].memoTitle + "\n" + notFixedTasks[indexPath.row].memoContent
+            } else {
+                if indexPath.section == 0 {
+                    vc.currentTask = fixedTasks[indexPath.row]
+                    vc.mainView.textView.text = fixedTasks[indexPath.row].memoTitle + "\n" + fixedTasks[indexPath.row].memoContent
+                } else {
+                    vc.currentTask = notFixedTasks[indexPath.row]
+                    vc.mainView.textView.text = notFixedTasks[indexPath.row].memoTitle + "\n" + notFixedTasks[indexPath.row].memoContent
+                }
             }
             navigationItem.backButtonTitle = "메모"
             navigationController?.pushViewController(vc, animated: true)

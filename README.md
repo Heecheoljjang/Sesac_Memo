@@ -220,3 +220,4 @@ PK를 날짜 문자열로 지정해주는 것 구현해야됨.
 - 서치 컨트롤러에서 resultViewController를 사용할 땐, 서치 컨트롤러를 사용하고 있는 뷰컨트롤러를 대리자로 지정해야함.
 - 스크롤뷰에는 keyboardDismissMode라는 키워드가 있음. onDrag로 설정하면 드래그 시 키보드내려감.
 - UIScreenEdgePanGesture
+- [String]을 String으로 바꾸기 위해서는 join사용
