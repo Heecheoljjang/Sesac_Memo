@@ -70,14 +70,19 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if tasks.filter("isFixed == true").count == 0 {
-            return "메모"
-        } else {
-            if section == 0 {
-                return "고정된 메모"
-            } else {
+        
+        if tableView == mainView.tableView {
+            if tasks.filter("isFixed == true").count == 0 {
                 return "메모"
+            } else {
+                if section == 0 {
+                    return "고정된 메모"
+                } else {
+                    return "메모"
+                }
             }
+        } else {
+            return "\(resultVC.tasks.count)개 찾음"
         }
     }
     
