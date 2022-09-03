@@ -16,6 +16,7 @@ final class MemoListView: BaseView {
         view.register(MemoListTableViewCell.self, forCellReuseIdentifier: MemoListTableViewCell.identifier)
         view.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         view.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        view.keyboardDismissMode = .onDrag
         return view
     }()
     

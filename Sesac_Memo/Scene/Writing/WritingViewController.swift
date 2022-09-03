@@ -26,6 +26,8 @@ final class WritingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
                 
+        addPanGesture()
+        
         setUpController()
         
         mainView.textView.becomeFirstResponder()
@@ -50,6 +52,12 @@ final class WritingViewController: BaseViewController {
             let task = UserMemo(memoTitle: "타이틀", memoContent: mainView.textView.text, registerDate: Date())
             repository.addMemo(memo: task)
         }
+    }
+    
+    func addPanGesture() {
+        let gesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(popWritingView(_:)))
+        gesture.edges = .left
+        mainView.addGestureRecognizer(gesture)
     }
         
     override func setUpController() {
@@ -80,5 +88,9 @@ final class WritingViewController: BaseViewController {
     @objc private func doneTapped() {
         //편집 그만(키보드 내리기)
         mainView.textView.endEditing(true)
+    }
+    
+    @objc private func popWritingView(_ sender: UIScreenEdgePanGestureRecognizer) {
+        navigationController?.popViewController(animated: true)
     }
 }

@@ -186,6 +186,10 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
             navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.mainView.endEditing(true)
+    }
 }
 
 extension MemoListViewController: UISearchResultsUpdating {
