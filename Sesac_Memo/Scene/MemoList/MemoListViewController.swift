@@ -17,10 +17,14 @@ final class MemoListViewController: BaseViewController {
 
     var tasks: Results<UserMemo>! {
         didSet {
+            print(tasks.count)
             title = "\(tasks.count)개의 메모"
+            self.mainView.tableView.reloadData()
         }
     }
         
+    let resultVC = SearchViewController()
+    
     private let userDefaults = UserDefaults.standard
     
     override func loadView() {
@@ -42,10 +46,7 @@ final class MemoListViewController: BaseViewController {
         tasks = repository.fetch() // pop될 때도 적용되어야함
         
         navigationController?.navigationBar.prefersLargeTitles = true // 작성화면의 라지타이틀 안쓴다는 내용이 적용돼서 매번 작성해줘야함.
-        
-//        //네비게이션 타이틀 수정
-//        navigationTitle = "\(tasks.count)개의 메모"
-//
+
         mainView.tableView.reloadData()
     }
     
@@ -81,14 +82,15 @@ final class MemoListViewController: BaseViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         navigationItem.backButtonTitle = "메모"
-//        title = navigationTitle
         
         //서치 컨트롤러 적용 자료
-        let searchController = UISearchController(searchResultsController: SearchViewController())
+        let searchController = UISearchController(searchResultsController: resultVC)
         searchController.searchBar.placeholder = "검색"
         searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
         searchController.searchBar.tintColor = .systemOrange
         searchController.searchResultsUpdater = self
+        resultVC.mainView.tableView.delegate = self
+        resultVC.mainView.tableView.dataSource = self
         navigationItem.searchController = searchController
         
         //툴바 적용
