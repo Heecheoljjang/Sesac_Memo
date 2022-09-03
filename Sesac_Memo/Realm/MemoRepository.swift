@@ -29,7 +29,7 @@ final class UserMemoRepository: UserMemoRepositoryType {
     }
     
     func fetchSearch(keyword: String) -> Results<UserMemo> {
-        return localRealm.objects(UserMemo.self).filter("memoContent CONTAINS[c] '\(keyword)'").sorted(byKeyPath: "registerDate", ascending: false)
+        return localRealm.objects(UserMemo.self).filter("memoContent CONTAINS[c] '\(keyword)' OR memoTitle CONTAINS[c] '\(keyword)'").sorted(byKeyPath: "registerDate", ascending: false)
     }
     
     func addMemo(memo: UserMemo) {

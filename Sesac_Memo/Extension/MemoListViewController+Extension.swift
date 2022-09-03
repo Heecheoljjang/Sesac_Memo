@@ -163,6 +163,29 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         fix.backgroundColor = .systemOrange
         return UISwipeActionsConfiguration(actions: [fix])
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = WritingViewController()
+        let fixedTasks = tasks.filter("isFixed == true")
+        let notFixedTasks = tasks.filter("isFixed == false")
+        
+        if tableView == mainView.tableView {
+            if indexPath.section == 0 {
+                vc.currentTask = fixedTasks[indexPath.row]
+                vc.mainView.textView.text = fixedTasks[indexPath.row].memoTitle + "\n" + fixedTasks[indexPath.row].memoContent
+            } else {
+                vc.currentTask = notFixedTasks[indexPath.row]
+                vc.mainView.textView.text = notFixedTasks[indexPath.row].memoTitle + "\n" + notFixedTasks[indexPath.row].memoContent
+            }
+            navigationItem.backButtonTitle = "메모"
+            navigationController?.pushViewController(vc, animated: true)
+        } else {
+            vc.currentTask = resultVC.tasks[indexPath.row]
+            vc.mainView.textView.text = resultVC.tasks[indexPath.row].memoTitle + "\n" + resultVC.tasks[indexPath.row].memoContent
+            navigationItem.backButtonTitle = "검색"
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 extension MemoListViewController: UISearchResultsUpdating {

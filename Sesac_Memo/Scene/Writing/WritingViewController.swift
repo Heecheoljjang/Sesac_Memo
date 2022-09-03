@@ -7,12 +7,17 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 final class WritingViewController: BaseViewController {
     
     var mainView = WritingView()
     
     var repository = UserMemoRepository()
+    
+    var currentTask: UserMemo!
+    
+    var isNew = true
     
     override func loadView() {
         self.view = mainView
@@ -30,6 +35,17 @@ final class WritingViewController: BaseViewController {
         super.viewWillDisappear(animated)
         
         //만약 적힌게 있다면 저장, 없으면 그냥 pop
+        //이때 편집인지, 새로 작성한건지도 판단해야함.
+//        if isNew == true {
+//            if mainView.textView.text != "" {
+//                let task = UserMemo(memoTitle: "타이틀", memoContent: mainView.textView.text, registerDate: Date())
+//                repository.addMemo(memo: task)
+//            }
+//        } else {
+//            //편집인데, 이전과 내용이 같은지 확인해야함
+//            let task = UserMemo(memoTitle: <#T##String#>, memoContent: <#T##String#>, registerDate: <#T##Date#>)
+//            repository.updateMemo(memo: currentTask, title: <#T##String#>, content: <#T##String#>)
+//        }
         if mainView.textView.text != "" {
             let task = UserMemo(memoTitle: "타이틀", memoContent: mainView.textView.text, registerDate: Date())
             repository.addMemo(memo: task)
