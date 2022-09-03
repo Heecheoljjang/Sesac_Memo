@@ -28,12 +28,16 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         let fixedTasks = tasks.filter("isFixed == true")
         let notFixedTasks = tasks.filter("isFixed == false")
         
+        //날짜 포맷 생각하기
         if indexPath.section == 0 {
             cell.titleLabel.text = fixedTasks[indexPath.row].memoTitle
-            cell.bottomLabel.text = dateToString(date: fixedTasks[indexPath.row].registerDate) + "  " + fixedTasks[indexPath.row].memoContent
+            cell.bottomLabel.text = fixedTasks[indexPath.row].registerDate.checkDate() + "   " + fixedTasks[indexPath.row].memoContent
+            
+            print(indexPath)
         } else {
             cell.titleLabel.text = notFixedTasks[indexPath.row].memoTitle
-            cell.bottomLabel.text = dateToString(date: notFixedTasks[indexPath.row].registerDate) + "  " + notFixedTasks[indexPath.row].memoContent
+            cell.bottomLabel.text = notFixedTasks[indexPath.row].registerDate.checkDate() + "   " + notFixedTasks[indexPath.row].memoContent
+            print(indexPath)
         }
         return cell
     }
@@ -91,5 +95,14 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         
         return UISwipeActionsConfiguration(actions: [fix])
         
+    }
+}
+
+extension MemoListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        
+        let vc = SearchViewController()
+        vc.tasks = repository.fetchSearch(keyword: text)
     }
 }

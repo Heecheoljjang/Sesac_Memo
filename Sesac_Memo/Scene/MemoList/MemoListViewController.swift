@@ -33,6 +33,9 @@ final class MemoListViewController: BaseViewController {
         super.viewDidLoad()
 
         setUpController()
+        
+        print(Calendar.current.dateComponents([.day, .year, .month], from: Date()))
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,7 +74,7 @@ final class MemoListViewController: BaseViewController {
     override func setUpController() {
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
-
+        
         //네비게이션바 설정
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = .systemGray6
@@ -83,10 +86,11 @@ final class MemoListViewController: BaseViewController {
         title = navigationTitle
         
         //서치 컨트롤러 적용 자료
-        let searchController = UISearchController(searchResultsController: nil)
+        let searchController = UISearchController(searchResultsController: SearchViewController())
         searchController.searchBar.placeholder = "검색"
         searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
         searchController.searchBar.tintColor = .systemOrange
+        searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
         
         //툴바 적용

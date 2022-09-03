@@ -21,15 +21,6 @@ class BaseViewController: UIViewController {
     
     func setUpController() {}
     
-    func dateToString(date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy. MM. dd a HH:mm"
-        dateFormatter.amSymbol = "오전"
-        dateFormatter.pmSymbol = "오후"
-        
-        return dateFormatter.string(from: date)
-    }
-    
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: "확인", style: .cancel)

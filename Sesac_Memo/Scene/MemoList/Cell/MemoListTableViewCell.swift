@@ -49,7 +49,6 @@ final class MemoListTableViewCell: BaseTableViewCell {
             make.horizontalEdges.equalToSuperview().inset(20)
             make.top.equalToSuperview().offset(16)
             make.height.equalTo(28)
-            //make.bottom.equalTo(bottomLabel.snp.top).offset(12)
         }
         
         bottomLabel.snp.makeConstraints { make in
