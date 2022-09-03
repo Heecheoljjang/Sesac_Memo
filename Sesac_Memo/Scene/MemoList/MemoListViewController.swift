@@ -17,8 +17,7 @@ final class MemoListViewController: BaseViewController {
 
     var tasks: Results<UserMemo>! {
         didSet {
-            print(tasks.count)
-            title = "\(tasks.count)개의 메모"
+            title = "\(numberSetting(number: tasks.count))개의 메모"
             self.mainView.tableView.reloadData()
         }
     }

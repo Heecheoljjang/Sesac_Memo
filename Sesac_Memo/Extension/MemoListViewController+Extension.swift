@@ -222,4 +222,10 @@ extension MemoListViewController {
         alert.addAction(cancel)
         present(alert, animated: true)
     }
+    
+    func numberSetting(number: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        return numberFormatter.string(for: number) ?? "0"
+    }
 }
