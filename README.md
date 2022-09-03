@@ -197,6 +197,8 @@ PK를 날짜 문자열로 지정해주는 것 구현해야됨.
 ### 추가 구현
 
 - UIScreenEdgePanGestureRecognizer로 작성화면 pop
+- 메모 리스트 타이틀 numberFormatter적용
+- 제목, 내용 분리 구현
 
 
 ### 이슈

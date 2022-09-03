@@ -19,6 +19,8 @@ final class WritingViewController: BaseViewController {
     
     var isNew = true
     
+    var textViewArray: [String] = []
+    
     override func loadView() {
         self.view = mainView
     }
@@ -49,7 +51,13 @@ final class WritingViewController: BaseViewController {
 //            repository.updateMemo(memo: currentTask, title: <#T##String#>, content: <#T##String#>)
 //        }
         if mainView.textView.text != "" {
-            let task = UserMemo(memoTitle: "타이틀", memoContent: mainView.textView.text, registerDate: Date())
+            
+            textViewArray = mainView.textView.text.components(separatedBy: "\n")
+            
+            let title = textViewArray[0]
+            let content = textViewArray[1...].joined()
+            
+            let task = UserMemo(memoTitle: title, memoContent: content, registerDate: Date())
             repository.addMemo(memo: task)
         }
     }
