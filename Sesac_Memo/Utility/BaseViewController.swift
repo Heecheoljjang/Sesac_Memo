@@ -12,14 +12,22 @@ class BaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         configure()
         setUpController()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setUpNavigationBarColor()
+        
     }
     
     func configure() {}
     
     func setUpController() {}
 
-    
+    func setUpNavigationBarColor() {}
 }

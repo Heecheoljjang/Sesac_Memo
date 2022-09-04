@@ -8,18 +8,20 @@
 import Foundation
 import UIKit
 import SnapKit
+import IQKeyboardManagerSwift
 
 final class WritingView: BaseView {
     
     let outerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         return view
     }()
     
     let textView: UITextView = {
         let view = UITextView()
-        view.font = .systemFont(ofSize: 16, weight: .semibold)
+        view.font = .systemFont(ofSize: 17, weight: .regular)
+        view.tintColor = .systemOrange
         return view
     }()
     
@@ -28,6 +30,8 @@ final class WritingView: BaseView {
         
         configure()
         setUpConstraints()
+        
+        //IQKeyboardManager.shared.enable = true
     }
     
     override func configure() {
@@ -36,6 +40,7 @@ final class WritingView: BaseView {
         [outerView, textView].forEach {
             self.addSubview($0)
         }
+
     }
     
     override func setUpConstraints() {

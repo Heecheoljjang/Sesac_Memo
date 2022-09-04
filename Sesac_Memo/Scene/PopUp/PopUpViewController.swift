@@ -19,10 +19,6 @@ final class PopUpViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configure()
-        
-        setUpController()
-        
     }
     
     override func configure() {

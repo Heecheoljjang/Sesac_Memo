@@ -27,12 +27,16 @@ final class WritingViewController: BaseViewController {
         super.viewDidLoad()
                 
         addPanGesture()
-        
-        setUpController()
-        
-        mainView.textView.becomeFirstResponder()
+                        
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        mainView.textView.becomeFirstResponder()
+
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -150,21 +154,38 @@ final class WritingViewController: BaseViewController {
         gesture.edges = .left
         mainView.addGestureRecognizer(gesture)
     }
-        
+       
     override func setUpController() {
         let shareButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(presentActivityController))
         let doneButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(doneTapped))
         
         navigationItem.rightBarButtonItems = [doneButton, shareButton]
-        navigationController?.navigationBar.prefersLargeTitles = false
+        //navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.largeTitleDisplayMode = .never
         navigationController?.navigationBar.tintColor = .systemOrange
-        
-        let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .clear
-        
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
 
+    }
+    
+    override func setUpNavigationBarColor() {
+        
+        navigationController?.isToolbarHidden = true
+        
+        switch self.traitCollection.userInterfaceStyle {
+        case .light, .unspecified:
+            mainView.backgroundColor = .systemBackground
+            let appearance = UINavigationBarAppearance()
+            appearance.backgroundColor = .systemBackground
+            appearance.shadowColor = .clear
+            
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        case .dark:
+            mainView.backgroundColor = .systemBackground
+            let appearance = UINavigationBarAppearance()
+            appearance.backgroundColor = .systemBackground
+            appearance.shadowColor = .clear
+            
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        }
     }
     
     //MARK: - @objc

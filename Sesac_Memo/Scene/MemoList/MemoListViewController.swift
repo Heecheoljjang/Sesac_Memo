@@ -35,8 +35,6 @@ final class MemoListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setUpController()
-            
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,7 +54,7 @@ final class MemoListViewController: BaseViewController {
         if userDefaults.bool(forKey: "isFirst") == false {
             
             let vc = PopUpViewController()
-            vc.modalPresentationStyle = .overCurrentContext
+            vc.modalPresentationStyle = .overFullScreen
             present(vc, animated: true)
 
         }
@@ -67,14 +65,9 @@ final class MemoListViewController: BaseViewController {
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
         
-        //네비게이션바 설정
-        let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .systemGray6
         
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationController?.navigationItem.largeTitleDisplayMode = .always
         navigationItem.backButtonTitle = "메모"
+
         
         //서치 컨트롤러 적용
         let searchController = UISearchController(searchResultsController: resultVC)
@@ -87,12 +80,36 @@ final class MemoListViewController: BaseViewController {
         navigationItem.searchController = searchController
         
         //툴바 적용
-        navigationController?.isToolbarHidden = false
         navigationController?.toolbar.tintColor = .systemOrange
-        navigationController?.toolbar.backgroundColor = .systemGray6
+        //navigationController?.toolbar.backgroundColor = .systemBackground
+        
         let addMemoButton = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"), style: .plain, target: self, action: #selector(presentWritingView))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolbarItems = [flexibleSpace, addMemoButton]
+    }
+    
+    override func setUpNavigationBarColor() {
+        
+        navigationController?.isToolbarHidden = false
+        
+        switch self.traitCollection.userInterfaceStyle {
+        case .light, .unspecified:
+            mainView.backgroundColor = .systemGray6 //커스텀뷰 클래스에서 하면 적용이안되는듯.
+            let appearance = UINavigationBarAppearance()
+            appearance.backgroundColor = .systemGray6
+            appearance.shadowColor = .clear
+            
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+            navigationController?.toolbar.backgroundColor = .systemGray6
+        case .dark:
+            mainView.backgroundColor = .systemBackground
+            let appearance = UINavigationBarAppearance()
+            appearance.backgroundColor = .systemBackground
+            appearance.shadowColor = .clear
+            
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+            navigationController?.toolbar.backgroundColor = .systemBackground
+        }
     }
     
     //MARK: - @objc
