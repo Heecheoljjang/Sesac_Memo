@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import RealmSwift
+import IQKeyboardManagerSwift
 
 final class WritingViewController: BaseViewController {
     
@@ -28,6 +29,7 @@ final class WritingViewController: BaseViewController {
                 
         addPanGesture()
                         
+        IQKeyboardManager.shared.enable = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -42,7 +44,6 @@ final class WritingViewController: BaseViewController {
         
         let omittingTrueArray = mainView.textView.text.split(separator: "\n", omittingEmptySubsequences: true) //공백 없는 것
         let omittingFalseArray = mainView.textView.text.split(separator: "\n", omittingEmptySubsequences: false)//공백 있는 것
-        print(omittingFalseArray)
         //만약 적힌게 있다면 저장, 없으면 그냥 pop
         //이때 편집인지, 새로 작성한건지도 판단해야함.
         if isNew == true {
