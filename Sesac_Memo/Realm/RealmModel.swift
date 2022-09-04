@@ -15,7 +15,7 @@ final class UserMemo: Object {
     @Persisted var registerDate = Date()
     @Persisted var isFixed: Bool = false
     
-    @Persisted(primaryKey: true) var objectId: ObjectId // 시간으로 PK를 정할거기 때문
+    @Persisted(primaryKey: true) var objectId: ObjectId
     
     convenience init(memoTitle: String, memoContent: String, registerDate: Date) {
         self.init()

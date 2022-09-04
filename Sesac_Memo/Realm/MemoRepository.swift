@@ -46,18 +46,12 @@ final class UserMemoRepository: UserMemoRepositoryType {
     }
     
     func updateMemo(memo: UserMemo, title: String, content: String) {
-        
-        // 만약 내용 다 지워버리면 메모 삭제되게해야함
-        if title == "" && content == "" {
-            deleteMemo(memo: memo)
-            
-            return
-        }
-        
+
         do {
             try localRealm.write {
                 memo.memoTitle = title
                 memo.memoContent = content
+                memo.registerDate = Date()
             }
         } catch RepositoryError.updateFailed {
             print("데이터 수정 실패")

@@ -76,7 +76,7 @@ final class MemoListViewController: BaseViewController {
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         navigationItem.backButtonTitle = "메모"
         
-        //서치 컨트롤러 적용 자료
+        //서치 컨트롤러 적용
         let searchController = UISearchController(searchResultsController: resultVC)
         searchController.searchBar.placeholder = "검색"
         searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
@@ -99,6 +99,7 @@ final class MemoListViewController: BaseViewController {
     
     @objc private func presentWritingView() {
         let vc = WritingViewController()
+        vc.isNew = true
         navigationItem.backButtonTitle = "메모 "
         navigationController?.pushViewController(vc, animated: true)
     }
