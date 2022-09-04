@@ -42,7 +42,7 @@ final class WritingViewController: BaseViewController {
         
         let omittingTrueArray = mainView.textView.text.split(separator: "\n", omittingEmptySubsequences: true) //공백 없는 것
         let omittingFalseArray = mainView.textView.text.split(separator: "\n", omittingEmptySubsequences: false)//공백 있는 것
-        
+        print(omittingFalseArray)
         //만약 적힌게 있다면 저장, 없으면 그냥 pop
         //이때 편집인지, 새로 작성한건지도 판단해야함.
         if isNew == true {
@@ -79,11 +79,13 @@ final class WritingViewController: BaseViewController {
                     //여기서도 마찬가지로 새로 변수를 만들어서 ""인 경우에 "\n"을 추가해서 합쳐야할듯
                     let index = omittingFalseArray.firstIndex(of: titleLast)! + 1
                     var tempContent: [Substring] = []
-                    for subString in omittingFalseArray[index...] {
+                    for (i, subString) in omittingFalseArray[index...].enumerated() {
                         if subString == "" {
-                            tempContent.append("\n")
+                            if i != omittingFalseArray[index...].count - 1 {
+                                tempContent.append("\n")
+                            }
                         } else {
-                            if subString != omittingFalseArray[index...].last {
+                            if i != omittingFalseArray[index...].count - 1 {
                                 tempContent.append(subString + "\n")
                             } else {
                                 tempContent.append(subString)
@@ -127,13 +129,16 @@ final class WritingViewController: BaseViewController {
                     
                     let index = omittingFalseArray.firstIndex(of: titleLast)! + 1
                     var tempContent: [Substring] = []
-                    for subString in omittingFalseArray[index...] {
+                    for (i, subString) in omittingFalseArray[index...].enumerated() {
                         if subString == "" {
-                            tempContent.append("\n")
+                            if i != omittingFalseArray[index...].count - 1 {
+                                tempContent.append("\n")
+                            }
                         } else {
-                            if subString != omittingFalseArray[index...].last {
+                            if i != omittingFalseArray[index...].count - 1 {
                                 tempContent.append(subString + "\n")
                             } else {
+                                //마지막
                                 tempContent.append(subString)
                             }
                         }
@@ -160,7 +165,6 @@ final class WritingViewController: BaseViewController {
         let doneButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(doneTapped))
         
         navigationItem.rightBarButtonItems = [doneButton, shareButton]
-        //navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.largeTitleDisplayMode = .never
         navigationController?.navigationBar.tintColor = .systemOrange
 
