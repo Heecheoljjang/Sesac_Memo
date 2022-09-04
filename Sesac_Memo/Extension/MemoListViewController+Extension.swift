@@ -60,10 +60,18 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
             }
             return cell
         } else {
+            //텍스트 색 바꿔줘야함.
+            //키워드를 알아야하기때문에 변수에 저장해놓고 그 부분을 찾아서 색바꾸는 방향으로 해봐야할듯 -> 될 지 모름
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
             
-            cell.titleLabel.text = resultVC.tasks[indexPath.row].memoTitle
-            cell.bottomLabel.text = resultVC.tasks[indexPath.row].registerDate.checkDate() + "   " + resultVC.tasks[indexPath.row].memoContent
+            //키워드 색 변경
+            let titleText = resultVC.tasks[indexPath.row].memoTitle
+            let bottomText = resultVC.tasks[indexPath.row].registerDate.checkDate() + "   " + resultVC.tasks[indexPath.row].memoContent
+            
+//            cell.titleLabel.text = resultVC.tasks[indexPath.row].memoTitle
+//            cell.bottomLabel.text = resultVC.tasks[indexPath.row].registerDate.checkDate() + "   " + resultVC.tasks[indexPath.row].memoContent
+            cell.titleLabel.attributedText = changeKeywordColor(titleText)
+            cell.bottomLabel.attributedText = changeKeywordColor(bottomText)
             
             return cell
         }
@@ -201,6 +209,8 @@ extension MemoListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
         
+        //키워드 색 변경을 위해 변수에 저장
+        searchKeyword = text
         resultVC.tasks = repository.fetchSearch(keyword: text)
         resultVC.mainView.tableView.reloadData()
     }
@@ -232,5 +242,12 @@ extension MemoListViewController {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         return numberFormatter.string(for: number) ?? "0"
+    }
+    
+    private func changeKeywordColor(_ string: String) -> NSMutableAttributedString {
+        let beforeString = (string.lowercased() as NSString).range(of: searchKeyword.lowercased())
+        let attributedString = NSMutableAttributedString.init(string: string)
+        attributedString.addAttribute(.foregroundColor, value: UIColor.systemOrange, range: beforeString)
+        return attributedString
     }
 }

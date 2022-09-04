@@ -24,6 +24,8 @@ final class MemoListViewController: BaseViewController {
         
     let resultVC = SearchViewController()
     
+    var searchKeyword = ""
+    
     private let userDefaults = UserDefaults.standard
     
     override func loadView() {
@@ -34,9 +36,7 @@ final class MemoListViewController: BaseViewController {
         super.viewDidLoad()
 
         setUpController()
-        
-        print(Calendar.current.dateComponents([.day, .year, .month], from: Date()))
-        
+            
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,13 +61,7 @@ final class MemoListViewController: BaseViewController {
 
         }
     }
-    
-    override func configure() {
-        super.configure()
-        
-        
-    }
-    
+
     //MARK: 네비게이션, 툴바 등 뷰컨트롤러 기본 세팅
     override func setUpController() {
         mainView.tableView.delegate = self
@@ -105,6 +99,7 @@ final class MemoListViewController: BaseViewController {
     
     @objc private func presentWritingView() {
         let vc = WritingViewController()
+        navigationItem.backButtonTitle = "메모 "
         navigationController?.pushViewController(vc, animated: true)
     }
 }
