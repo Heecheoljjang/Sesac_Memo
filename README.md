@@ -226,3 +226,87 @@ PK를 날짜 문자열로 지정해주는 것 구현해야됨.
 - 스크롤뷰에는 keyboardDismissMode라는 키워드가 있음. onDrag로 설정하면 드래그 시 키보드내려감.
 - UIScreenEdgePanGesture
 - [String]을 String으로 바꾸기 위해서는 join사용
+
+
+## 9/4 
+
+- [x] 작성/수정 화면 
+  - [x] 완료 버튼, 편집 상태 끝, 백버튼 액션, 제스쳐(스와이프?)를 통해 이전 화면으로 가고 작성한게 있다면 메모 저장
+  - [x] 텍스트 없는 경우엔 저장안함
+  - [x] 작성된 텍스트에서 리턴키 입력 전까지를 제목으로, 나머진 내용으로 저장
+    -> 두 개의 컬럼에 나눠 저장
+  - [x] 편집했을 때의 시간으로 다시 저장
+  - [x] 텍스트앞에 공백이 포함되었을때 그대로 저장하지만, 셀에서는 문자를 우선으로 보여주기
+  - [x] 키보드에 텍스트 가려지는 현상 해결
+  - [ ] 테이블뷰 섹션 타이틀 크게 해야함
+- [x] 검색 화면
+  - [x] 검색 키워드 텍스트 색상 변경
+- [x] 전체적인 UI
+  - [x] Color
+  - [x] 네비게이션 타이틀 잔상 오류 해결
+  - [x] 커서 노란색으로 변경
+  
+### 구현 못한 것
+
+- 테이블뷰 섹션 타이틀 크게하기
+
+### 이슈
+
+- 검색 키워드 텍스트 컬러 변경 시에 NSMutableAttributedString을 사용했는데, 문자열 자체를 사용하다보니 대소문자 구별이 안되어있어서 해결해야했음.
+
+attributedString은 원래의 값을 갖고 있는 상태로 range로 판별해서 색을 적용하는 것 같음.
+
+~~~
+    private func changeKeywordColor(_ string: String) -> NSMutableAttributedString {
+        let beforeString = (string.lowercased() as NSString).range(of: searchKeyword.lowercased())
+        let attributedString = NSMutableAttributedString.init(string: string)
+        attributedString.addAttribute(.foregroundColor, value: UIColor.systemOrange, range: beforeString)
+        return attributedString
+    }
+~~~
+
+beforeString에서 텍스트의 원래 값과 검색어를 lowercased를 적용해서 선언했다.
+
+attributedString은 텍스트 원래의 값을 가진 채로 이니셜라이즈되었고, beforeString에서 lowercased한 string과 검색어를 비교하는 것.
+
+검색어만큼의 range가 attributedString에도 적용되어 색이 바뀌어 보이는 것인듯.
+
+- 실제 메모 앱에서는 맨 첫줄이 빈 칸일때 처음으로 나오는 문자열을 제목으로 설정하지만, 메모를 확인했을때 공백은 남아있음.
+
+어떻게 해결해야할까..
+
+지금 생각나는 방법은 일단 split으로 나누고 문자가 처음나올때까지 반복문을 사용해서 문자열을 만들어 저장.
+
+이때 들어간 마지막 원소를 따로 변수에 저장하여 인덱스를 구한 뒤 그 이후부터 끝까지를 content에 넣어줌.
+
+저장은 이렇게 하고 셀에 표시할 때는 split의 omittingEmptySubsequences를 true로 해서 각각 0번째 요소를 보여주면 될 것 같음.
+
+타이틀 앞에 공백있는 경우도 생각하기
+
+해결했는데 너무 지저분해서 맞는지모르겠음.
+
+이제 앞에 공백이 있어도 그대로 저장되지만 셀에서는 문자부터 보이게 구현
+
+- 잔상이 남는 이유는 색때문이었음..
+
+화면이 전환될때 뷰 자체가 남아있어서 색이 다르면 잔상이 보임.
+
+근데 다시 생각해보니 작성하는뷰의 백그라운드 색을 설정안해서 그런듯
+
+- 키보드에 텍스트가 가려지는 현상 발생해서 IQKeyboardManager 라이브러리로 해결
+
+### 새롭게 안 것
+
+- NSMutableAttributedString을 이용해 해당 키워드에 대해서만 텍스트컬러를 바꿀 수 있음.
+- split의 omittingEmptySubsequences를 이용할때 "\n"은 그냥 ""로 나옴.... 하
+- trim으로 문자열의 앞뒤 공백을 지울 수 있음.
+- 툴바의 색은 아무 설정 안해야 실제 메모앱과 동일
+
+    스크롤될때 색 바뀌는 것도 자동으로 적용
+- 기본적인 흑백 다크모드색은 UIColor에서 systemBackground로 설정하면됨.
+- 직접적인 색으로 하려면 systemGray6인듯
+- NavigationController로 연결되어있어서 한 쪽 뷰컨트롤러에서 바꾸면 모두 적용되기때문에 viewWillAppear에서 설정하는게 나을 것 같음.
+- traitCollection.userInterfaceStyle로 다크모드/라이트모드 처리 가능.
+- 앱이 켜져있는 상태에서 바꾼다면 처음엔 적용안됨
+
+# 체크
