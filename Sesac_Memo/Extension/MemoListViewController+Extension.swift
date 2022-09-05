@@ -48,7 +48,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
             
             //제목도 앞부분에 공백이 있는경우 없애주기 - trim사용
             if fixedTasks.count == 0 {
-                cell.titleLabel.text = notFixedTasks[indexPath.row].memoTitle.trimmingCharacters(in: .whitespacesAndNewlines)
+                cell.titleLabel.text = notFixedTasks[indexPath.row].memoTitle.trimmingCharacters(in: .whitespacesAndNewlines) == "" ? "새로운 메모" : notFixedTasks[indexPath.row].memoTitle.trimmingCharacters(in: .whitespacesAndNewlines)
                 //내용이 비어있는 경우엔 추가 텍스트 없음으로 보여주기
                 cell.bottomLabel.text = notFixedTasks[indexPath.row].memoContent == "" ?  notFixedTasks[indexPath.row].registerDate.checkDate() + "   추가 텍스트 없음" : notFixedTasks[indexPath.row].registerDate.checkDate() + "   " + notFixedTasks[indexPath.row].memoContent.trimmingCharacters(in: .whitespacesAndNewlines)
             } else {
@@ -57,7 +57,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
                     cell.bottomLabel.text = fixedTasks[indexPath.row].memoContent == "" ?  fixedTasks[indexPath.row].registerDate.checkDate() + "   추가 텍스트 없음" : fixedTasks[indexPath.row].registerDate.checkDate() + "   " + fixedTasks[indexPath.row].memoContent.trimmingCharacters(in: .whitespacesAndNewlines)
 
                 } else {
-                    cell.titleLabel.text = notFixedTasks[indexPath.row].memoTitle.trimmingCharacters(in: .whitespacesAndNewlines)
+                    cell.titleLabel.text = notFixedTasks[indexPath.row].memoTitle.trimmingCharacters(in: .whitespacesAndNewlines) == "" ? "새로운 메모" : notFixedTasks[indexPath.row].memoTitle.trimmingCharacters(in: .whitespacesAndNewlines)
                     cell.bottomLabel.text = notFixedTasks[indexPath.row].memoContent == "" ?  notFixedTasks[indexPath.row].registerDate.checkDate() + "   추가 텍스트 없음" : notFixedTasks[indexPath.row].registerDate.checkDate() + "   " + notFixedTasks[indexPath.row].memoContent.trimmingCharacters(in: .whitespacesAndNewlines)
                 }
             }

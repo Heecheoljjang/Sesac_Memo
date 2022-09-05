@@ -58,6 +58,14 @@ final class MemoListViewController: BaseViewController {
             present(vc, animated: true)
 
         }
+        
+        //가장 최근 작성된 메모가 제목, 내용이 전부 ""라면 삭제
+        let latestTask = repository.fetch().first
+        if latestTask?.memoTitle.trimmingCharacters(in: .whitespacesAndNewlines) == "" && latestTask?.memoContent.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            repository.deleteMemo(memo: latestTask!)
+            tasks = repository.fetch()
+            mainView.tableView.reloadData()
+        }
     }
 
     //MARK: 네비게이션, 툴바 등 뷰컨트롤러 기본 세팅
@@ -117,6 +125,13 @@ final class MemoListViewController: BaseViewController {
     @objc private func presentWritingView() {
         let vc = WritingViewController()
         vc.isNew = true
+        
+        //메모 생성 후 전달
+        let task = UserMemo(memoTitle: "", memoContent: "", registerDate: Date())
+        repository.addMemo(memo: task)
+        
+        vc.currentTask = repository.fetch().first // 가장 최근
+        
         navigationItem.backButtonTitle = "메모 "
         navigationController?.pushViewController(vc, animated: true)
     }

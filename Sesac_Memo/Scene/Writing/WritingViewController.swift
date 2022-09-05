@@ -32,7 +32,7 @@ final class WritingViewController: BaseViewController {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -73,7 +73,8 @@ final class WritingViewController: BaseViewController {
                     let title = tempTitle.joined()
                     
                     let task = UserMemo(memoTitle: title, memoContent: "", registerDate: Date())
-                    repository.addMemo(memo: task)
+                    //repository.addMemo(memo: task)
+                    repository.updateMemo(memo: currentTask, title: title, content: "")
                 } else {
                     //다르면 content는 titleLast이후부터 마지막까지
                     let title = tempTitle.joined()
@@ -97,62 +98,61 @@ final class WritingViewController: BaseViewController {
                     let content = tempContent.joined()
                     
                     let task = UserMemo(memoTitle: title, memoContent: content, registerDate: Date())
-                    repository.addMemo(memo: task)
+//                    repository.addMemo(memo: task)
+                    repository.updateMemo(memo: currentTask, title: title, content: content)
                 }
             }
         } else {
             //다 지웠을 경우엔 delete
-            if omittingTrueArray.count == 0 {
-                repository.deleteMemo(memo: currentTask)
-            } else {
-                //currentTask랑 비교했을때 다를때만 수정
-                var tempTitle:[Substring] = []
-                var titleLast:Substring = ""
-                
-                for subString in omittingFalseArray {
-                    if subString == "" {
-                        tempTitle.append("\n")
-                    } else {
-                        tempTitle.append(subString + "\n")
-                        titleLast = subString
-                        break
-                    }
-                }
-                if omittingTrueArray.count == 1 {
-                    let title = tempTitle.joined()
-                    let content = ""
-                    
-                    //다른 경우에만 업데이트
-                    if currentTask.memoTitle != title || currentTask.memoContent != content {
-                        repository.updateMemo(memo: currentTask, title: title, content: content)
-                    }
+            
+            //currentTask랑 비교했을때 다를때만 수정
+            var tempTitle:[Substring] = []
+            var titleLast:Substring = ""
+            
+            for subString in omittingFalseArray {
+                if subString == "" {
+                    tempTitle.append("\n")
                 } else {
-                    let title = tempTitle.joined()
-                    
-                    let index = omittingFalseArray.firstIndex(of: titleLast)! + 1
-                    var tempContent: [Substring] = []
-                    for (i, subString) in omittingFalseArray[index...].enumerated() {
-                        if subString == "" {
-                            if i != omittingFalseArray[index...].count - 1 {
-                                tempContent.append("\n")
-                            }
-                        } else {
-                            if i != omittingFalseArray[index...].count - 1 {
-                                tempContent.append(subString + "\n")
-                            } else {
-                                //마지막
-                                tempContent.append(subString)
-                            }
-                        }
-                    }
-                    let content = tempContent.joined()
-                    
-                    //다른 경우에만 업데이트
-                    if currentTask.memoTitle != title || currentTask.memoContent != content {
-                        repository.updateMemo(memo: currentTask, title: title, content: content)
-                    }
+                    tempTitle.append(subString + "\n")
+                    titleLast = subString
+                    break
                 }
             }
+            if omittingTrueArray.count == 1 {
+                let title = tempTitle.joined()
+                let content = ""
+                
+                //다른 경우에만 업데이트
+                if currentTask.memoTitle != title || currentTask.memoContent != content {
+                    repository.updateMemo(memo: currentTask, title: title, content: content)
+                }
+            } else {
+                let title = tempTitle.joined()
+                
+                let index = omittingFalseArray.firstIndex(of: titleLast)! + 1
+                var tempContent: [Substring] = []
+                for (i, subString) in omittingFalseArray[index...].enumerated() {
+                    if subString == "" {
+                        if i != omittingFalseArray[index...].count - 1 {
+                            tempContent.append("\n")
+                        }
+                    } else {
+                        if i != omittingFalseArray[index...].count - 1 {
+                            tempContent.append(subString + "\n")
+                        } else {
+                            //마지막
+                            tempContent.append(subString)
+                        }
+                    }
+                }
+                let content = tempContent.joined()
+                
+                //다른 경우에만 업데이트
+                if currentTask.memoTitle != title || currentTask.memoContent != content {
+                    repository.updateMemo(memo: currentTask, title: title, content: content)
+                }
+            }
+            
         }
     }
     
