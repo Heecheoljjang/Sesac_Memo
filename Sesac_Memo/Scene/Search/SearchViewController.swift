@@ -27,9 +27,7 @@ final class SearchViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-        tasks = repository.fetchSearch(keyword: "i")
-        
+             
         setUpController()
     }
 

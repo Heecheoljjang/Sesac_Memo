@@ -31,7 +31,6 @@ final class SearchView: BaseView {
         [tableView].forEach {
             self.addSubview($0)
         }
-        //backgroundColor = .systemGray6
     }
     
     override func setUpConstraints() {

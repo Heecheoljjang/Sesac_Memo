@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 import SnapKit
-import IQKeyboardManagerSwift
 
 final class WritingView: BaseView {
     
@@ -31,7 +30,6 @@ final class WritingView: BaseView {
         configure()
         setUpConstraints()
         
-        //IQKeyboardManager.shared.enable = true
     }
     
     override func configure() {
@@ -40,7 +38,6 @@ final class WritingView: BaseView {
         [outerView, textView].forEach {
             self.addSubview($0)
         }
-
     }
     
     override func setUpConstraints() {

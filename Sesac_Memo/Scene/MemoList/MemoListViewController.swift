@@ -58,7 +58,10 @@ final class MemoListViewController: BaseViewController {
             present(vc, animated: true)
 
         }
-        
+        emptyDelete()
+    }
+    
+    private func emptyDelete() {
         //가장 최근 작성된 메모가 제목, 내용이 전부 ""라면 삭제
         let latestTask = repository.fetch().first
         if latestTask?.memoTitle.trimmingCharacters(in: .whitespacesAndNewlines) == "" && latestTask?.memoContent.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
@@ -67,16 +70,14 @@ final class MemoListViewController: BaseViewController {
             mainView.tableView.reloadData()
         }
     }
-
+    
     //MARK: 네비게이션, 툴바 등 뷰컨트롤러 기본 세팅
     override func setUpController() {
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
         
-        
         navigationItem.backButtonTitle = "메모"
 
-        
         //서치 컨트롤러 적용
         let searchController = UISearchController(searchResultsController: resultVC)
         searchController.searchBar.placeholder = "검색"
@@ -89,7 +90,6 @@ final class MemoListViewController: BaseViewController {
         
         //툴바 적용
         navigationController?.toolbar.tintColor = .systemOrange
-        //navigationController?.toolbar.backgroundColor = .systemBackground
         
         let addMemoButton = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"), style: .plain, target: self, action: #selector(presentWritingView))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)

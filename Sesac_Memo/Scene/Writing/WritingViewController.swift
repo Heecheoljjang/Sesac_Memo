@@ -36,8 +36,9 @@ final class WritingViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        mainView.textView.becomeFirstResponder()
-
+        if isNew == true {
+            mainView.textView.becomeFirstResponder()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -72,8 +73,6 @@ final class WritingViewController: BaseViewController {
                     //같으면 content는 빈칸으로
                     let title = tempTitle.joined()
                     
-                    let task = UserMemo(memoTitle: title, memoContent: "", registerDate: Date())
-                    //repository.addMemo(memo: task)
                     repository.updateMemo(memo: currentTask, title: title, content: "")
                 } else {
                     //다르면 content는 titleLast이후부터 마지막까지
@@ -97,8 +96,6 @@ final class WritingViewController: BaseViewController {
                     }
                     let content = tempContent.joined()
                     
-                    let task = UserMemo(memoTitle: title, memoContent: content, registerDate: Date())
-//                    repository.addMemo(memo: task)
                     repository.updateMemo(memo: currentTask, title: title, content: content)
                 }
             }
