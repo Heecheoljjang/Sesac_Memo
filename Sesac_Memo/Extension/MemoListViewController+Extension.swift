@@ -187,7 +187,6 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
                     vc.currentTask = fixedTasks[indexPath.row]
                     vc.mainView.textView.text = fixedTasks[indexPath.row].memoTitle + fixedTasks[indexPath.row].memoContent
                 } else {
-                    print(notFixedTasks[indexPath.row])
                     vc.currentTask = notFixedTasks[indexPath.row]
                     vc.mainView.textView.text = notFixedTasks[indexPath.row].memoTitle + notFixedTasks[indexPath.row].memoContent
                 }
@@ -206,6 +205,23 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.mainView.endEditing(true)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let label = UILabel(frame: CGRect(x: 4, y: 0, width: UIScreen.main.bounds.width - 40, height: 30))
+        label.font = .systemFont(ofSize: 22, weight: .bold)
+        label.text = self.tableView(tableView, titleForHeaderInSection: section)
+        
+        let view = UIView()
+        view.addSubview(label)
+        
+        
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
     }
 }
 

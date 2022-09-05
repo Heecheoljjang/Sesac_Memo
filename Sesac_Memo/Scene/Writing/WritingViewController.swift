@@ -30,6 +30,7 @@ final class WritingViewController: BaseViewController {
         addPanGesture()
                         
         IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = false
     }
 
     override func viewDidAppear(_ animated: Bool) {
