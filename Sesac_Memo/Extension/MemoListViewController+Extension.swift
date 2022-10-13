@@ -48,16 +48,16 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
             
             //제목도 앞부분에 공백이 있는경우 없애주기 - trim사용
             if fixedTasks.count == 0 {
-                cell.titleLabel.text = notFixedTasks[indexPath.row].memoTitle.trimmingCharacters(in: .whitespacesAndNewlines) == "" ? "새로운 메모" : notFixedTasks[indexPath.row].memoTitle.trimmingCharacters(in: .whitespacesAndNewlines)
+                cell.titleLabel.text = notFixedTasks[indexPath.row].title.trimmingCharacters(in: .whitespacesAndNewlines) == "" ? "새로운 메모" : notFixedTasks[indexPath.row].title.trimmingCharacters(in: .whitespacesAndNewlines)
                 //내용이 비어있는 경우엔 추가 텍스트 없음으로 보여주기
                 cell.bottomLabel.text = notFixedTasks[indexPath.row].memoContent == "" ?  notFixedTasks[indexPath.row].registerDate.checkDate() + "   추가 텍스트 없음" : notFixedTasks[indexPath.row].registerDate.checkDate() + "   " + notFixedTasks[indexPath.row].memoContent.trimmingCharacters(in: .whitespacesAndNewlines)
             } else {
                 if indexPath.section == 0 {
-                    cell.titleLabel.text = fixedTasks[indexPath.row].memoTitle.trimmingCharacters(in: .whitespacesAndNewlines)
+                    cell.titleLabel.text = fixedTasks[indexPath.row].title.trimmingCharacters(in: .whitespacesAndNewlines)
                     cell.bottomLabel.text = fixedTasks[indexPath.row].memoContent == "" ?  fixedTasks[indexPath.row].registerDate.checkDate() + "   추가 텍스트 없음" : fixedTasks[indexPath.row].registerDate.checkDate() + "   " + fixedTasks[indexPath.row].memoContent.trimmingCharacters(in: .whitespacesAndNewlines)
 
                 } else {
-                    cell.titleLabel.text = notFixedTasks[indexPath.row].memoTitle.trimmingCharacters(in: .whitespacesAndNewlines) == "" ? "새로운 메모" : notFixedTasks[indexPath.row].memoTitle.trimmingCharacters(in: .whitespacesAndNewlines)
+                    cell.titleLabel.text = notFixedTasks[indexPath.row].title.trimmingCharacters(in: .whitespacesAndNewlines) == "" ? "새로운 메모" : notFixedTasks[indexPath.row].title.trimmingCharacters(in: .whitespacesAndNewlines)
                     cell.bottomLabel.text = notFixedTasks[indexPath.row].memoContent == "" ?  notFixedTasks[indexPath.row].registerDate.checkDate() + "   추가 텍스트 없음" : notFixedTasks[indexPath.row].registerDate.checkDate() + "   " + notFixedTasks[indexPath.row].memoContent.trimmingCharacters(in: .whitespacesAndNewlines)
                 }
             }
@@ -68,7 +68,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
             
             //키워드 색 변경
-            let titleText = resultVC.tasks[indexPath.row].memoTitle.trimmingCharacters(in: .whitespacesAndNewlines)
+            let titleText = resultVC.tasks[indexPath.row].title.trimmingCharacters(in: .whitespacesAndNewlines)
             let bottomText = resultVC.tasks[indexPath.row].registerDate.checkDate() + "   " + resultVC.tasks[indexPath.row].memoContent.trimmingCharacters(in: .whitespacesAndNewlines)
 
             cell.titleLabel.attributedText = changeKeywordColor(titleText)
@@ -181,14 +181,14 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         if tableView == mainView.tableView {
             if fixedTasks.count == 0 {
                 vc.currentTask = notFixedTasks[indexPath.row]
-                vc.mainView.textView.text = notFixedTasks[indexPath.row].memoTitle + notFixedTasks[indexPath.row].memoContent
+                vc.mainView.textView.text = notFixedTasks[indexPath.row].title + notFixedTasks[indexPath.row].memoContent
             } else {
                 if indexPath.section == 0 {
                     vc.currentTask = fixedTasks[indexPath.row]
-                    vc.mainView.textView.text = fixedTasks[indexPath.row].memoTitle + fixedTasks[indexPath.row].memoContent
+                    vc.mainView.textView.text = fixedTasks[indexPath.row].title + fixedTasks[indexPath.row].memoContent
                 } else {
                     vc.currentTask = notFixedTasks[indexPath.row]
-                    vc.mainView.textView.text = notFixedTasks[indexPath.row].memoTitle + notFixedTasks[indexPath.row].memoContent
+                    vc.mainView.textView.text = notFixedTasks[indexPath.row].title + notFixedTasks[indexPath.row].memoContent
                 }
             }
             vc.isNew = false
@@ -197,7 +197,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             vc.isNew = false
             vc.currentTask = resultVC.tasks[indexPath.row]
-            vc.mainView.textView.text = resultVC.tasks[indexPath.row].memoTitle + resultVC.tasks[indexPath.row].memoContent
+            vc.mainView.textView.text = resultVC.tasks[indexPath.row].title + resultVC.tasks[indexPath.row].memoContent
             navigationItem.backButtonTitle = "검색"
             navigationController?.pushViewController(vc, animated: true)
         }

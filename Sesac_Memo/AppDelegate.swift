@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        aboutRealmMigration()
         
         return true
     }
@@ -33,3 +36,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate {
+    
+    func aboutRealmMigration() {
+
+        let config = Realm.Configuration(schemaVersion: 6) { migration, oldSchemaVersion in
+            if oldSchemaVersion < 1 {
+                // 컬럼 추가
+            }
+            if oldSchemaVersion < 2 {
+                // 컬럼 삭제
+            }
+            if oldSchemaVersion < 3 {
+                //컬럼 이름 변경 memoTitle -> title
+                migration.renameProperty(onType: UserMemo.className(), from: "memoTitle", to: "title")
+            }
+            if oldSchemaVersion < 4 {
+                //summary 컬럼 추가 및 데이터 추가
+                migration.enumerateObjects(ofType: UserMemo.className()) { oldObject, newObject in
+                    guard let new = newObject, let old = oldObject else { return }
+                    new["summary"] = "\(old["title"]) \(old["memoContent"])"
+                }
+            }
+            if oldSchemaVersion < 5 {
+                //옵셔널 타입 변경
+                migration.enumerateObjects(ofType: UserMemo.className()) { oldObject, newObject in
+                    guard let new = newObject, let old = oldObject else { return }
+                    new["summary"] = old["summary"] ?? "nil이었던애들"
+                }
+            }
+            if oldSchemaVersion < 6  {
+                //타입 변경
+                migration.enumerateObjects(ofType: UserMemo.className()) { _ , newObject in
+                    guard let new = newObject else { return }
+                    new["summary"] = 123
+                }
+            }
+        }
+        Realm.Configuration.defaultConfiguration = config
+    }
+}

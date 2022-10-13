@@ -120,7 +120,7 @@ final class WritingViewController: BaseViewController {
                 let content = ""
                 
                 //다른 경우에만 업데이트
-                if currentTask.memoTitle != title || currentTask.memoContent != content {
+                if currentTask.title != title || currentTask.memoContent != content {
                     repository.updateMemo(memo: currentTask, title: title, content: content)
                 }
             } else {
@@ -145,7 +145,7 @@ final class WritingViewController: BaseViewController {
                 let content = tempContent.joined()
                 
                 //다른 경우에만 업데이트
-                if currentTask.memoTitle != title || currentTask.memoContent != content {
+                if currentTask.title != title || currentTask.memoContent != content {
                     repository.updateMemo(memo: currentTask, title: title, content: content)
                 }
             }

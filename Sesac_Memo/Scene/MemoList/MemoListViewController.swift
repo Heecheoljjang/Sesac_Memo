@@ -28,19 +28,35 @@ final class MemoListViewController: BaseViewController {
     
     private let userDefaults = UserDefaults.standard
     
+    let localRealm = try! Realm()
+    
     override func loadView() {
         self.view = mainView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+//        for i in 0...9 {
+//            let task = UserMemo(memoTitle: "제목입니다 \(i)", memoContent: "내용이에요 \(i)", registerDate: Date())
+//            
+//            do {
+//                try localRealm.write {
+//                    localRealm.add(task)
+//                }
+//            } catch {
+//                print("추가 오류")
+//            }
+//        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         tasks = repository.fetch() // pop될 때도 적용되어야함
+        
+        print(tasks)
         
         navigationController?.navigationBar.prefersLargeTitles = true // 작성화면의 라지타이틀 안쓴다는 내용이 적용돼서 매번 작성해줘야함.
 
@@ -50,6 +66,18 @@ final class MemoListViewController: BaseViewController {
     //MARK: 팝업 화면 띄우기
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        //1. fileURL
+        print("FileURL: \(localRealm.configuration.fileURL!)")
+        
+        //2. 스키마버전 확인하는 코드
+        do {
+            let version = try schemaVersionAtURL(localRealm.configuration.fileURL!)
+            print("Schema Version: \(version)")
+                
+        } catch {
+            print("오류")
+        }
         
         if userDefaults.bool(forKey: "isFirst") == false {
             
@@ -64,7 +92,7 @@ final class MemoListViewController: BaseViewController {
     private func emptyDelete() {
         //가장 최근 작성된 메모가 제목, 내용이 전부 ""라면 삭제
         let latestTask = repository.fetch().first
-        if latestTask?.memoTitle.trimmingCharacters(in: .whitespacesAndNewlines) == "" && latestTask?.memoContent.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+        if latestTask?.title.trimmingCharacters(in: .whitespacesAndNewlines) == "" && latestTask?.memoContent.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
             repository.deleteMemo(memo: latestTask!)
             tasks = repository.fetch()
             mainView.tableView.reloadData()

@@ -49,7 +49,7 @@ final class UserMemoRepository: UserMemoRepositoryType {
 
         do {
             try localRealm.write {
-                memo.memoTitle = title
+                memo.title = title
                 memo.memoContent = content
                 memo.registerDate = Date()
             }
