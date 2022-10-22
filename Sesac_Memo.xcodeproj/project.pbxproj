@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9709B6512903BE75002122F0 /* FolderListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9709B6502903BE75002122F0 /* FolderListTableViewCell.swift */; };
+		9709B6532903C206002122F0 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9709B6522903C206002122F0 /* Observable.swift */; };
+		9709B6552903C778002122F0 /* FolderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9709B6542903C778002122F0 /* FolderListViewModel.swift */; };
 		9717443528C2F5B2001BE4FA /* DateformatterCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717443428C2F5B2001BE4FA /* DateformatterCase.swift */; };
 		9717443728C2F718001BE4FA /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717443628C2F718001BE4FA /* Date+Extension.swift */; };
 		971A67E728C23EB9004E4B61 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A67E628C23EB9004E4B61 /* SearchViewController.swift */; };
@@ -35,9 +38,14 @@
 		97AC156328BFC81D007089FD /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AC156228BFC81D007089FD /* PopUpViewController.swift */; };
 		97AC156928BFD0E4007089FD /* MemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AC156828BFD0E4007089FD /* MemoListViewController.swift */; };
 		97B4CAE428C50A220038413D /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 97B4CAE328C50A220038413D /* IQKeyboardManagerSwift */; };
+		97CD326E28FEE6830087A07E /* FolderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CD326D28FEE6830087A07E /* FolderListView.swift */; };
+		97CD327028FEE68D0087A07E /* FolderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CD326F28FEE68D0087A07E /* FolderListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9709B6502903BE75002122F0 /* FolderListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListTableViewCell.swift; sourceTree = "<group>"; };
+		9709B6522903C206002122F0 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		9709B6542903C778002122F0 /* FolderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListViewModel.swift; sourceTree = "<group>"; };
 		9717443428C2F5B2001BE4FA /* DateformatterCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateformatterCase.swift; sourceTree = "<group>"; };
 		9717443628C2F718001BE4FA /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		971A67E628C23EB9004E4B61 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +72,8 @@
 		97AC156028BFC812007089FD /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		97AC156228BFC81D007089FD /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		97AC156828BFD0E4007089FD /* MemoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewController.swift; sourceTree = "<group>"; };
+		97CD326D28FEE6830087A07E /* FolderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListView.swift; sourceTree = "<group>"; };
+		97CD326F28FEE68D0087A07E /* FolderListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +91,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9709B6582903C7B3002122F0 /* MemoList */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MemoList;
+			sourceTree = "<group>";
+		};
 		971A67E528C23E43004E4B61 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +205,7 @@
 		97AC155E28BFC7EF007089FD /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				97CD326A28FEE5DC0087A07E /* New */,
 				971A67E528C23E43004E4B61 /* Search */,
 				975E99D828C0A2260072AC5D /* Writing */,
 				97AC156728BFD0D5007089FD /* MemoList */,
@@ -223,6 +241,27 @@
 				975E99CD28C080920072AC5D /* MemoListView.swift */,
 			);
 			path = MemoList;
+			sourceTree = "<group>";
+		};
+		97CD326A28FEE5DC0087A07E /* New */ = {
+			isa = PBXGroup;
+			children = (
+				9709B6522903C206002122F0 /* Observable.swift */,
+				9709B6582903C7B3002122F0 /* MemoList */,
+				97CD326B28FEE5F40087A07E /* Folder */,
+			);
+			path = New;
+			sourceTree = "<group>";
+		};
+		97CD326B28FEE5F40087A07E /* Folder */ = {
+			isa = PBXGroup;
+			children = (
+				97CD326D28FEE6830087A07E /* FolderListView.swift */,
+				97CD326F28FEE68D0087A07E /* FolderListViewController.swift */,
+				9709B6542903C778002122F0 /* FolderListViewModel.swift */,
+				9709B6502903BE75002122F0 /* FolderListTableViewCell.swift */,
+			);
+			path = Folder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,11 +345,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9709B6532903C206002122F0 /* Observable.swift in Sources */,
+				97CD327028FEE68D0087A07E /* FolderListViewController.swift in Sources */,
 				971A67E928C23EC1004E4B61 /* SearchView.swift in Sources */,
 				975E99D528C08D760072AC5D /* BaseTableViewCell.swift in Sources */,
 				975E99D328C08C9F0072AC5D /* UITableViewCell+Extension.swift in Sources */,
 				97AC155028BF9AD9007089FD /* RealmModel.swift in Sources */,
 				97AC153328BF658B007089FD /* AppDelegate.swift in Sources */,
+				97CD326E28FEE6830087A07E /* FolderListView.swift in Sources */,
 				9717443728C2F718001BE4FA /* Date+Extension.swift in Sources */,
 				971A67E728C23EB9004E4B61 /* SearchViewController.swift in Sources */,
 				971A67EC28C24072004E4B61 /* SearchTableViewCell.swift in Sources */,
@@ -320,7 +362,9 @@
 				97AC156328BFC81D007089FD /* PopUpViewController.swift in Sources */,
 				97AC154B28BF9AAC007089FD /* BaseView.swift in Sources */,
 				97AC153528BF658B007089FD /* SceneDelegate.swift in Sources */,
+				9709B6512903BE75002122F0 /* FolderListTableViewCell.swift in Sources */,
 				97AC156928BFD0E4007089FD /* MemoListViewController.swift in Sources */,
+				9709B6552903C778002122F0 /* FolderListViewModel.swift in Sources */,
 				975E99DC28C10A160072AC5D /* WritingView.swift in Sources */,
 				97AC156128BFC812007089FD /* PopUpView.swift in Sources */,
 				9717443528C2F5B2001BE4FA /* DateformatterCase.swift in Sources */,
@@ -474,7 +518,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -503,7 +547,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

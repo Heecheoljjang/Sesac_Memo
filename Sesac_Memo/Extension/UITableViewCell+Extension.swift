@@ -10,5 +10,9 @@ import UIKit
 
 extension UITableViewCell {
     
-    static var identifier = String(describing: self)
+    static var identifier: String{
+        get {
+            String(describing: self)
+        }
+    }
 }

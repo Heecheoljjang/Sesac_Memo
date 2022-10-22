@@ -12,8 +12,10 @@ import UIKit
 protocol UserMemoRepositoryType {
     
     func fetch() -> Results<UserMemo> //메모
+    func fetchFolders() -> Results<MemoFolder>
     func fetchSearch(keyword: String) -> Results<UserMemo> //검색결과
     func addMemo(memo: UserMemo) //데이터 추가
+    func addFolder(folder: MemoFolder)
     func updateMemo(memo: UserMemo, title: String, content: String) // 데이터 수정(고정 / 메모 수정)
     func updateIsFixed(memo: UserMemo)
     func deleteMemo(memo: UserMemo) // 데이터 삭제
@@ -26,6 +28,10 @@ final class UserMemoRepository: UserMemoRepositoryType {
     
     func fetch() -> Results<UserMemo> {
         return localRealm.objects(UserMemo.self).sorted(byKeyPath: "registerDate", ascending: false)
+    }
+    
+    func fetchFolders() -> Results<MemoFolder> {
+        return localRealm.objects(MemoFolder.self)
     }
     
     func fetchSearch(keyword: String) -> Results<UserMemo> {
@@ -42,6 +48,17 @@ final class UserMemoRepository: UserMemoRepositoryType {
             print("데이터 저장 실패")
         } catch {
             print("알 수 없는 오류")
+        }
+    }
+    
+    func addFolder(folder: MemoFolder) {
+        do {
+            try localRealm.write {
+                localRealm.add(folder)
+                print(localRealm.configuration.fileURL!)
+            }
+        } catch {
+            print("오류~")
         }
     }
     
