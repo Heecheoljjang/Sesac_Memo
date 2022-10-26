@@ -10,6 +10,9 @@
 		9709B6512903BE75002122F0 /* FolderListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9709B6502903BE75002122F0 /* FolderListTableViewCell.swift */; };
 		9709B6532903C206002122F0 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9709B6522903C206002122F0 /* Observable.swift */; };
 		9709B6552903C778002122F0 /* FolderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9709B6542903C778002122F0 /* FolderListViewModel.swift */; };
+		9709B65A290433B1002122F0 /* MemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9709B659290433B1002122F0 /* MemoView.swift */; };
+		9709B65C290433BE002122F0 /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9709B65B290433BE002122F0 /* MemoViewController.swift */; };
+		9709B65E29043405002122F0 /* MemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9709B65D29043405002122F0 /* MemoViewModel.swift */; };
 		9717443528C2F5B2001BE4FA /* DateformatterCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717443428C2F5B2001BE4FA /* DateformatterCase.swift */; };
 		9717443728C2F718001BE4FA /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717443628C2F718001BE4FA /* Date+Extension.swift */; };
 		971A67E728C23EB9004E4B61 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A67E628C23EB9004E4B61 /* SearchViewController.swift */; };
@@ -22,6 +25,9 @@
 		975E99D728C097EC0072AC5D /* MemoListViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975E99D628C097EC0072AC5D /* MemoListViewController+Extension.swift */; };
 		975E99DA28C0A23B0072AC5D /* WritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975E99D928C0A23B0072AC5D /* WritingViewController.swift */; };
 		975E99DC28C10A160072AC5D /* WritingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975E99DB28C10A160072AC5D /* WritingView.swift */; };
+		979E70D02909B05E00613F1B /* MemoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E70CF2909B05E00613F1B /* MemoListViewModel.swift */; };
+		979E70D32909B08C00613F1B /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 979E70D22909B08C00613F1B /* RxCocoa */; };
+		979E70D52909B08C00613F1B /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 979E70D42909B08C00613F1B /* RxSwift */; };
 		97AC153328BF658B007089FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AC153228BF658B007089FD /* AppDelegate.swift */; };
 		97AC153528BF658B007089FD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AC153428BF658B007089FD /* SceneDelegate.swift */; };
 		97AC153C28BF658C007089FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97AC153B28BF658C007089FD /* Assets.xcassets */; };
@@ -46,6 +52,9 @@
 		9709B6502903BE75002122F0 /* FolderListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListTableViewCell.swift; sourceTree = "<group>"; };
 		9709B6522903C206002122F0 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		9709B6542903C778002122F0 /* FolderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListViewModel.swift; sourceTree = "<group>"; };
+		9709B659290433B1002122F0 /* MemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoView.swift; sourceTree = "<group>"; };
+		9709B65B290433BE002122F0 /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
+		9709B65D29043405002122F0 /* MemoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewModel.swift; sourceTree = "<group>"; };
 		9717443428C2F5B2001BE4FA /* DateformatterCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateformatterCase.swift; sourceTree = "<group>"; };
 		9717443628C2F718001BE4FA /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		971A67E628C23EB9004E4B61 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +67,7 @@
 		975E99D628C097EC0072AC5D /* MemoListViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoListViewController+Extension.swift"; sourceTree = "<group>"; };
 		975E99D928C0A23B0072AC5D /* WritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingViewController.swift; sourceTree = "<group>"; };
 		975E99DB28C10A160072AC5D /* WritingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingView.swift; sourceTree = "<group>"; };
+		979E70CF2909B05E00613F1B /* MemoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewModel.swift; sourceTree = "<group>"; };
 		97AC152F28BF658B007089FD /* Sesac_Memo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sesac_Memo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97AC153228BF658B007089FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97AC153428BF658B007089FD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,8 +91,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				979E70D52909B08C00613F1B /* RxSwift in Frameworks */,
 				97AC155A28BF9C52007089FD /* RealmSwift in Frameworks */,
 				97B4CAE428C50A220038413D /* IQKeyboardManagerSwift in Frameworks */,
+				979E70D32909B08C00613F1B /* RxCocoa in Frameworks */,
 				97AC155828BF9C52007089FD /* Realm in Frameworks */,
 				97AC155528BF9BEB007089FD /* SnapKit in Frameworks */,
 			);
@@ -94,6 +106,9 @@
 		9709B6582903C7B3002122F0 /* MemoList */ = {
 			isa = PBXGroup;
 			children = (
+				9709B659290433B1002122F0 /* MemoView.swift */,
+				9709B65B290433BE002122F0 /* MemoViewController.swift */,
+				9709B65D29043405002122F0 /* MemoViewModel.swift */,
 			);
 			path = MemoList;
 			sourceTree = "<group>";
@@ -239,6 +254,7 @@
 				975E99CF28C0842D0072AC5D /* Cell */,
 				97AC156828BFD0E4007089FD /* MemoListViewController.swift */,
 				975E99CD28C080920072AC5D /* MemoListView.swift */,
+				979E70CF2909B05E00613F1B /* MemoListViewModel.swift */,
 			);
 			path = MemoList;
 			sourceTree = "<group>";
@@ -285,6 +301,8 @@
 				97AC155728BF9C52007089FD /* Realm */,
 				97AC155928BF9C52007089FD /* RealmSwift */,
 				97B4CAE328C50A220038413D /* IQKeyboardManagerSwift */,
+				979E70D22909B08C00613F1B /* RxCocoa */,
+				979E70D42909B08C00613F1B /* RxSwift */,
 			);
 			productName = Sesac_Memo;
 			productReference = 97AC152F28BF658B007089FD /* Sesac_Memo.app */;
@@ -318,6 +336,7 @@
 				97AC155328BF9BEB007089FD /* XCRemoteSwiftPackageReference "SnapKit" */,
 				97AC155628BF9C52007089FD /* XCRemoteSwiftPackageReference "realm-swift" */,
 				97B4CAE228C50A220038413D /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				979E70D12909B08C00613F1B /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 97AC153028BF658B007089FD /* Products */;
 			projectDirPath = "";
@@ -358,17 +377,21 @@
 				971A67EC28C24072004E4B61 /* SearchTableViewCell.swift in Sources */,
 				975E99D728C097EC0072AC5D /* MemoListViewController+Extension.swift in Sources */,
 				975E99D128C08C430072AC5D /* MemoListTableViewCell.swift in Sources */,
+				9709B65C290433BE002122F0 /* MemoViewController.swift in Sources */,
 				975E99CE28C080920072AC5D /* MemoListView.swift in Sources */,
 				97AC156328BFC81D007089FD /* PopUpViewController.swift in Sources */,
 				97AC154B28BF9AAC007089FD /* BaseView.swift in Sources */,
 				97AC153528BF658B007089FD /* SceneDelegate.swift in Sources */,
 				9709B6512903BE75002122F0 /* FolderListTableViewCell.swift in Sources */,
+				9709B65A290433B1002122F0 /* MemoView.swift in Sources */,
+				979E70D02909B05E00613F1B /* MemoListViewModel.swift in Sources */,
 				97AC156928BFD0E4007089FD /* MemoListViewController.swift in Sources */,
 				9709B6552903C778002122F0 /* FolderListViewModel.swift in Sources */,
 				975E99DC28C10A160072AC5D /* WritingView.swift in Sources */,
 				97AC156128BFC812007089FD /* PopUpView.swift in Sources */,
 				9717443528C2F5B2001BE4FA /* DateformatterCase.swift in Sources */,
 				97AC155228BF9AF1007089FD /* MemoRepository.swift in Sources */,
+				9709B65E29043405002122F0 /* MemoViewModel.swift in Sources */,
 				97AC155D28BFB1A5007089FD /* Error.swift in Sources */,
 				975E99DA28C0A23B0072AC5D /* WritingViewController.swift in Sources */,
 				97AC154D28BF9AB4007089FD /* BaseViewController.swift in Sources */,
@@ -585,6 +608,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		979E70D12909B08C00613F1B /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 		97AC155328BF9BEB007089FD /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -612,6 +643,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		979E70D22909B08C00613F1B /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 979E70D12909B08C00613F1B /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		979E70D42909B08C00613F1B /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 979E70D12909B08C00613F1B /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
 		97AC155428BF9BEB007089FD /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 97AC155328BF9BEB007089FD /* XCRemoteSwiftPackageReference "SnapKit" */;

@@ -10,12 +10,12 @@ import RealmSwift
 
 final class FolderListViewModel {
     
-    var tasks: Observable<Results<MemoFolder>?>? = Observable(nil)
+    var tasks: Observable<Results<MemoFolder>?> = Observable(nil)
         
     let repository = UserMemoRepository()
     
     func fetchTasks() {
-        tasks?.value = repository.fetchFolders()
+        tasks.value = repository.fetchFolders()
     }
     
     func appendFolder(title: String) {

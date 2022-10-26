@@ -1,80 +1,78 @@
 //
-//  FolderListViewController.swift
+//  MemoListViewController.swift
 //  Sesac_Memo
 //
-//  Created by HeecheolYoon on 2022/10/18.
+//  Created by HeecheolYoon on 2022/10/22.
 //
 
 import UIKit
 import RealmSwift
 
-final class FolderListViewController: BaseViewController {
-        
-    private var mainView = FolderListView()
+final class MemoViewController: BaseViewController {
     
-    private var viewModel = FolderListViewModel()
+    private var mainView = MemoView()
     
-    private var dataSource: UICollectionViewDiffableDataSource<Int, MemoFolder>!
-        
+    var viewModel = MemoViewModel()
+    
+    private var dataSource: UICollectionViewDiffableDataSource<Int, UserMemo>!
+    
     override func loadView() {
         view = mainView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        print(viewModel.title)
+        print(viewModel.repository.fetchFolder(title: viewModel.title))
         bind()
         
         configureHierarchy()
         configureDataSource()
         
-        viewModel.fetchTasks()
+        viewModel.fetchMemo()
     }
     
     override func configure() {
         super.configure()
         
-        let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(createFolder))
+        let addButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(createMemo))
         navigationItem.rightBarButtonItem = addButton
         
-        mainView.collectionView.delegate = self
     }
     
     private func bind() {
         viewModel.tasks.bind { [weak self] task in
             //스냅샷
-            guard let task = task else { return }
-            var snapshot = NSDiffableDataSourceSnapshot<Int, MemoFolder>()
+            var snapshot = NSDiffableDataSourceSnapshot<Int, UserMemo>()
             snapshot.appendSections([0])
-            snapshot.appendItems(Array(task))
+//            snapshot.appendItems(Array(task))
             self?.dataSource.apply(snapshot, animatingDifferences: false)
-         }
+        }
     }
     
-    @objc private func createFolder() {
-        guard let text = mainView.titleTextField.text else { return }
-        viewModel.appendFolder(title: text) //스냅샷 수정은 위에 작성
+    @objc private func createMemo() {
+        viewModel.createMemo()
     }
 }
 
-extension FolderListViewController {
-    
+extension MemoViewController {
     private func configureHierarchy() {
         mainView.collectionView.collectionViewLayout = createLayout()
     }
     
     private func configureDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, MemoFolder> { cell, indexPath, itemIdentifier in
+        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, UserMemo> { cell, indexPath, itemIdentifier in
             
             var content = UIListContentConfiguration.valueCell()
             content.text = itemIdentifier.title
-            content.image = UIImage(systemName: "folder")
+            content.secondaryText = itemIdentifier.memoContent
             
             cell.contentConfiguration = content
         }
         dataSource = UICollectionViewDiffableDataSource(collectionView: mainView.collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
-            
             let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
+            
             return cell
         })
     }
@@ -83,17 +81,6 @@ extension FolderListViewController {
         let configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         let layout = UICollectionViewCompositionalLayout.list(using: configuration)
         return layout
-    }
-}
-
-extension FolderListViewController: UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let vc = MemoViewController()
-        vc.viewModel.title = viewModel.tasks.value![indexPath.item].title
-        navigationController?.pushViewController(vc, animated: true)
-        
     }
     
 }

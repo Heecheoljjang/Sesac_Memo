@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            let nav = UINavigationController(rootViewController: FolderListViewController())
+            let nav = UINavigationController(rootViewController: MemoListViewController())
             window.rootViewController = nav
             self.window = window
             window.makeKeyAndVisible()

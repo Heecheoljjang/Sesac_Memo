@@ -13,7 +13,9 @@ protocol UserMemoRepositoryType {
     
     func fetch() -> Results<UserMemo> //메모
     func fetchFolders() -> Results<MemoFolder>
+    func fetchFolder(title: String) -> List<UserMemo>?
     func fetchSearch(keyword: String) -> Results<UserMemo> //검색결과
+    func fetchFiltered(filter: String) -> Results<UserMemo>
     func addMemo(memo: UserMemo) //데이터 추가
     func addFolder(folder: MemoFolder)
     func updateMemo(memo: UserMemo, title: String, content: String) // 데이터 수정(고정 / 메모 수정)
@@ -34,8 +36,16 @@ final class UserMemoRepository: UserMemoRepositoryType {
         return localRealm.objects(MemoFolder.self)
     }
     
+    func fetchFolder(title: String) -> List<UserMemo>? {
+        return localRealm.objects(MemoFolder.self)[0].memos
+    }
+
     func fetchSearch(keyword: String) -> Results<UserMemo> {
         return localRealm.objects(UserMemo.self).filter("memoContent CONTAINS[c] '\(keyword)' OR memoTitle CONTAINS[c] '\(keyword)'").sorted(byKeyPath: "registerDate", ascending: false)
+    }
+    
+    func fetchFiltered(filter: String) -> Results<UserMemo> {
+        return localRealm.objects(UserMemo.self).filter(filter)
     }
     
     func addMemo(memo: UserMemo) {
