@@ -8,13 +8,14 @@
 import UIKit
 import RealmSwift
 
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        aboutRealmMigration()
+       // aboutRealmMigration()
         
         return true
     }
@@ -49,7 +50,7 @@ extension AppDelegate {
             }
             if oldSchemaVersion < 3 {
                 //컬럼 이름 변경 memoTitle -> title
-                migration.renameProperty(onType: UserMemo.className(), from: "memoTitle", to: "title")
+                migration.renameProperty(onType: UserMemo.className(), from: "title", to: "title")
             }
             if oldSchemaVersion < 4 {
                 //summary 컬럼 추가 및 데이터 추가

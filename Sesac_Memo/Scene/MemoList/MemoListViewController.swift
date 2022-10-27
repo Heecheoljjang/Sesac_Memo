@@ -30,7 +30,7 @@ final class MemoListViewController: BaseViewController {
         //tasks의 값이 바뀌면 내부 코드 실행
         viewModel.tasks
             .bind(onNext: { [weak self] memo in
-                self?.title = "\(self?.numberSetting(number: memo.count))개의 메모"
+                self?.title = "\(self!.viewModel.numberSetting(number: memo.count))개의 메모"
                 self?.mainView.tableView.reloadData()
             })
             .disposed(by: disposeBag)
@@ -145,7 +145,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         
         if tableView == mainView.tableView {
 //            if tasks.filter("isFixed == true").count == 0 {
-            if viewModel.checkFilteredCount(filter: "isFixed == true", count: 0) {
+            if viewModel.checkFilteredCount(isFixed: true, count: 0) {
                 return 1
             } else {
                 return 2
@@ -157,13 +157,13 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == mainView.tableView {
-            if viewModel.checkFilteredCount(filter: "isFixed == true", count: 0) {
-                return viewModel.fetchFilteredCount(filter: "isFixed == false")
+            if viewModel.checkFilteredCount(isFixed: true, count: 0) {
+                return viewModel.fetchFilteredCount(isFixed: false)
             } else {
                 if section == 0 {
-                    return viewModel.fetchFilteredCount(filter: "isFixed == true")
+                    return viewModel.fetchFilteredCount(isFixed: true)
                 } else {
-                    return viewModel.fetchFilteredCount(filter: "isFixed == false")
+                    return viewModel.fetchFilteredCount(isFixed: false)
                 }
             }
         } else {
@@ -176,11 +176,12 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         if tableView == mainView.tableView {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MemoListTableViewCell.identifier, for: indexPath) as? MemoListTableViewCell else { return UITableViewCell() }
             
-            let fixedTasks = viewModel.fetchFiltered(filter: "isFixed == true")
-            let notFixedTasks = viewModel.fetchFiltered(filter: "isFixed == false")
+            let fixedTasks = viewModel.fetchIsFixed(isFixed: true)
+            let notFixedTasks = viewModel.fetchIsFixed(isFixed: false)
             
             //제목도 앞부분에 공백이 있는경우 없애주기 - trim사용
-            if fixedTasks.count == 0 {
+//            if fixedTasks.count == 0 {
+            if viewModel.checkFilteredCount(isFixed: true, count: 0) {
                 cell.titleLabel.text = notFixedTasks[indexPath.row].title.trimmingCharacters(in: .whitespacesAndNewlines) == "" ? "새로운 메모" : notFixedTasks[indexPath.row].title.trimmingCharacters(in: .whitespacesAndNewlines)
                 //내용이 비어있는 경우엔 추가 텍스트 없음으로 보여주기
                 cell.bottomLabel.text = notFixedTasks[indexPath.row].memoContent == "" ?  notFixedTasks[indexPath.row].registerDate.checkDate() + "   추가 텍스트 없음" : notFixedTasks[indexPath.row].registerDate.checkDate() + "   " + notFixedTasks[indexPath.row].memoContent.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -201,8 +202,10 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
             
             //키워드 색 변경
-            let titleText = resultVC.tasks[indexPath.row].title.trimmingCharacters(in: .whitespacesAndNewlines)
-            let bottomText = resultVC.tasks[indexPath.row].registerDate.checkDate() + "   " + resultVC.tasks[indexPath.row].memoContent.trimmingCharacters(in: .whitespacesAndNewlines)
+//            let titleText = resultVC.tasks[indexPath.row].title.trimmingCharacters(in: .whitespacesAndNewlines)
+            let titleText = resultVC.viewModel.fetchMemo()[indexPath.row].title.trimmingCharacters(in: .whitespacesAndNewlines)
+//            let bottomText = resultVC.tasks[indexPath.row].registerDate.checkDate() + "   " + resultVC.tasks[indexPath.row].memoContent.trimmingCharacters(in: .whitespacesAndNewlines)
+            let bottomText = resultVC.viewModel.fetchMemo()[indexPath.row].registerDate.checkDate() + "   " + resultVC.viewModel.fetchMemo()[indexPath.row].memoContent.trimmingCharacters(in: .whitespacesAndNewlines)
 
             cell.titleLabel.attributedText = changeKeywordColor(titleText, keyword: viewModel.searchKeyword.value)
             cell.bottomLabel.attributedText = changeKeywordColor(bottomText, keyword: viewModel.searchKeyword.value)
@@ -214,7 +217,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         if tableView == mainView.tableView {
-            if viewModel.checkFilteredCount(filter: "isFixed == true", count: 0) {
+            if viewModel.checkFilteredCount(isFixed: true, count: 0) {
                 return "메모"
             } else {
                 if section == 0 {
@@ -224,7 +227,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
         } else {
-            return "\(resultVC.tasks.count)개 찾음"
+            return "\(resultVC.viewModel.fetchMemoCount())개 찾음"
         }
     }
     
@@ -235,12 +238,12 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     //삭제
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let fixedTasks = viewModel.fetchFiltered(filter: "isFixed == true")
-        let notFixedTasks = viewModel.fetchFiltered(filter: "isFixed == false")
+        let fixedTasks = viewModel.fetchIsFixed(isFixed: true)
+        let notFixedTasks = viewModel.fetchIsFixed(isFixed: false)
         
         let delete = UIContextualAction(style: .normal, title: nil) { [weak self] action, view, completionHandler in
             if tableView == self?.mainView.tableView {
-                if fixedTasks.count == 0 {
+                if self!.viewModel.checkFilteredCount(isFixed: true, count: 0) {
                     self?.checkCancel(memo: notFixedTasks[indexPath.row])
                 } else {
                     if indexPath.section == 0 {
@@ -250,7 +253,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
                     }
                 }
             } else {
-                self?.resultVC.checkCancel(memo: self!.resultVC.tasks[indexPath.row]) {
+                self?.resultVC.checkCancel(memo: self!.resultVC.viewModel.fetchMemo()[indexPath.row]) {
                     self?.viewModel.fetchMemo()
                     //self?.mainView.tableView.reloadData()
                 }
@@ -264,13 +267,13 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     //고정
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let fixedTasks = viewModel.fetchFiltered(filter: "isFixed == true")
-        let notFixedTasks = viewModel.fetchFiltered(filter: "isFixed == false")
+        let fixedTasks = viewModel.fetchIsFixed(isFixed: true)
+        let notFixedTasks = viewModel.fetchIsFixed(isFixed: false)
         
         let fix = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
             
             if tableView == self.mainView.tableView {
-                if fixedTasks.count == 0 {
+                if self.viewModel.checkFilteredCount(isFixed: true, count: 0) {
 //                    self.repository.updateIsFixed(memo: notFixedTasks[indexPath.row])
                     self.viewModel.updateIsFixed(memo: notFixedTasks[indexPath.row])
                 } else {
@@ -284,10 +287,12 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
                         }
                     }
                 }
-                self.mainView.tableView.reloadData()
+//                self.mainView.tableView.reloadData()
             } else {
-                self.resultVC.repository.updateIsFixed(memo: self.resultVC.tasks[indexPath.row])
-                self.resultVC.mainView.tableView.reloadData()
+//                self.resultVC.repository.updateIsFixed(memo: self.resultVC.tasks[indexPath.row])
+                self.resultVC.viewModel.updateIsFixed(memo: self.resultVC.viewModel.fetchMemo()[indexPath.row])
+                
+               // self.resultVC.mainView.tableView.reloadData()
             }
 //            self.tasks = self.repository.fetch()
             self.viewModel.fetchMemo()
@@ -295,27 +300,25 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         }
         fix.backgroundColor = .systemOrange
         if tableView == mainView.tableView {
-            if fixedTasks.count == 0 {
+            if viewModel.checkFilteredCount(isFixed: true, count: 0) {
                 fix.image = UIImage(systemName: "pin.fill")
             } else {
                 let image = indexPath.section == 0 ? "pin.slash.fill" : "pin.fill"
                 fix.image = UIImage(systemName: image)
             }
         } else {
-            fix.image = resultVC.tasks[indexPath.row].isFixed ? UIImage(systemName: "pin.slash.fill") : UIImage(systemName: "pin.fill")
+            fix.image = resultVC.viewModel.fetchMemo()[indexPath.row].isFixed ? UIImage(systemName: "pin.slash.fill") : UIImage(systemName: "pin.fill")
         }
-        
-        
         return UISwipeActionsConfiguration(actions: [fix])
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = WritingViewController()
-        let fixedTasks = viewModel.fetchFiltered(filter: "isFixed == true")
-        let notFixedTasks = viewModel.fetchFiltered(filter: "isFixed == false")
+        let fixedTasks = viewModel.fetchIsFixed(isFixed: true)
+        let notFixedTasks = viewModel.fetchIsFixed(isFixed: false)
         
         if tableView == mainView.tableView {
-            if fixedTasks.count == 0 {
+            if viewModel.checkFilteredCount(isFixed: true, count: 0) {
                 vc.currentTask = notFixedTasks[indexPath.row]
                 vc.mainView.textView.text = notFixedTasks[indexPath.row].title + notFixedTasks[indexPath.row].memoContent
             } else {
@@ -332,8 +335,8 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
             navigationController?.pushViewController(vc, animated: true)
         } else {
             vc.isNew = false
-            vc.currentTask = resultVC.tasks[indexPath.row]
-            vc.mainView.textView.text = resultVC.tasks[indexPath.row].title + resultVC.tasks[indexPath.row].memoContent
+            vc.currentTask = resultVC.viewModel.fetchMemo()[indexPath.row]
+            vc.mainView.textView.text = resultVC.viewModel.fetchMemo()[indexPath.row].title + resultVC.viewModel.fetchMemo()[indexPath.row].memoContent
             navigationItem.backButtonTitle = "검색"
             navigationController?.pushViewController(vc, animated: true)
         }
@@ -376,6 +379,7 @@ extension MemoListViewController: UISearchResultsUpdating {
 
 extension MemoListViewController {
     
+    //UI
     private func showFixAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: "확인", style: .cancel)
@@ -383,25 +387,19 @@ extension MemoListViewController {
         present(alert, animated: true)
     }
     
+    //UI
     private func checkCancel(memo: UserMemo) {
         let alert = UIAlertController(title: "메모를 제거하시겠습니까??", message: "삭제하시면 다시 되돌릴 수 없습니다!!", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "확인", style: .destructive) { _ in
-            self.viewModel.deleteMemo(memo: memo) //바인드된 코드 같이 실행됨
-//            self.title = "\(self.tasks.count)개의 메모"
-//            self.mainView.tableView.reloadData()
+        let ok = UIAlertAction(title: "확인", style: .destructive) { [weak self] _ in
+            self?.viewModel.deleteMemo(memo: memo) //바인드된 코드 같이 실행됨
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel)
         alert.addAction(ok)
         alert.addAction(cancel)
         present(alert, animated: true)
     }
-    
-    func numberSetting(number: Int) -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        return numberFormatter.string(for: number) ?? "0"
-    }
-    
+
+    //UI
     private func changeKeywordColor(_ string: String, keyword: String) -> NSMutableAttributedString {
         let beforeString = (string.lowercased() as NSString).range(of: keyword.lowercased())
         let attributedString = NSMutableAttributedString.init(string: string)

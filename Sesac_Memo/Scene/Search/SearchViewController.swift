@@ -16,13 +16,7 @@ final class SearchViewController: BaseViewController {
     var mainView = SearchView()
     
     var repository = UserMemoRepository()
-    
-    var tasks: Results<UserMemo>! {
-        didSet {
-            mainView.tableView.reloadData()
-        }
-    }
-    
+
     let viewModel = SearchViewModel()
     
     let disposeBag = DisposeBag()

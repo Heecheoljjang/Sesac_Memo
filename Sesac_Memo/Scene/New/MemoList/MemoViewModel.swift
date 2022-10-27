@@ -23,7 +23,7 @@ final class MemoViewModel {
     }
     
     func createMemo() {
-        repository.addMemo(memo: UserMemo(memoTitle: "test", memoContent: "Hi", registerDate: Date()))
+        repository.addMemo(memo: UserMemo(title: "test", memoContent: "Hi", registerDate: Date()))
         fetchMemo()
     }
 }

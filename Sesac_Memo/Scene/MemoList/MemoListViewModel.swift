@@ -28,16 +28,16 @@ final class MemoListViewModel {
         tasks.onNext(repository.fetch())
     }
     
-    func fetchFiltered(filter: String) -> Results<UserMemo> {
-        return repository.fetchFiltered(filter: filter)
+    func fetchIsFixed(isFixed: Bool) -> Results<UserMemo> {
+        return repository.fetchFiltered(filter: "isFixed == \(isFixed)")
     }
     
-    func fetchFilteredCount(filter: String) -> Int {
-        return repository.fetchFiltered(filter: filter).count
+    func fetchFilteredCount(isFixed: Bool) -> Int {
+        return repository.fetchFiltered(filter: "isFixed == \(isFixed)").count
     }
     
-    func checkFilteredCount(filter: String, count: Int) -> Bool {
-        return fetchFilteredCount(filter: filter) == count ? true : false
+    func checkFilteredCount(isFixed: Bool, count: Int) -> Bool {
+        return fetchFilteredCount(isFixed: isFixed) == count ? true : false
     }
     
     func checkFirst() -> Bool {
@@ -53,7 +53,7 @@ final class MemoListViewModel {
     }
     
     func addMemo() {
-        let task = UserMemo(memoTitle: "", memoContent: "", registerDate: Date())
+        let task = UserMemo(title: "", memoContent: "", registerDate: Date())
         repository.addMemo(memo: task)
         fetchMemo()
     }
@@ -69,6 +69,7 @@ final class MemoListViewModel {
     
     func updateIsFixed(memo: UserMemo) {
         repository.updateIsFixed(memo: memo)
+        fetchMemo()
     }
     
 //    func fetchSearch(keyword: String) {
@@ -77,6 +78,12 @@ final class MemoListViewModel {
     
     func setSearchKeyword(keyword: String) {
         searchKeyword.accept(keyword)
+    }
+    
+    func numberSetting(number: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        return numberFormatter.string(for: number) ?? "0"
     }
     
 }

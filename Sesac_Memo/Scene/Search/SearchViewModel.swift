@@ -27,4 +27,13 @@ final class SearchViewModel {
     func fetchMemoCount() -> Int {
         return repository.fetch().count
     }
+    
+    func fetchMemo() -> Results<UserMemo> {
+        return repository.fetch()
+    }
+    
+    func updateIsFixed(memo: UserMemo) {
+        repository.updateIsFixed(memo: memo)
+        tasks.onNext(fetchMemo())
+    }
 }
