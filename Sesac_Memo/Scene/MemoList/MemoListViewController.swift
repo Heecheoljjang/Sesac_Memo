@@ -40,6 +40,7 @@ final class MemoListViewController: BaseViewController {
             .drive(onNext: { [weak self] value in
                 //resultVC의 tasks값 onNext로 바뀌고, 바인드된 코드로 테이블뷰 리로드
                 self?.resultVC.viewModel.fetchSearch(keyword: value)
+                self?.resultVC.mainView.tableView.reloadData()
             })
             .disposed(by: disposeBag)
     }
@@ -168,7 +169,8 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
             }
         } else {
 //            return resultVC.tasks.count
-            return resultVC.viewModel.fetchMemoCount()
+//            return resultVC.viewModel.fetchMemoCount()
+            return resultVC.viewModel.fetchCurrentCount()
         }
     }
     
@@ -203,9 +205,10 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
             
             //키워드 색 변경
 //            let titleText = resultVC.tasks[indexPath.row].title.trimmingCharacters(in: .whitespacesAndNewlines)
-            let titleText = resultVC.viewModel.fetchMemo()[indexPath.row].title.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            let titleText = resultVC.viewModel.fetchTask()[indexPath.row].title.trimmingCharacters(in: .whitespacesAndNewlines)
 //            let bottomText = resultVC.tasks[indexPath.row].registerDate.checkDate() + "   " + resultVC.tasks[indexPath.row].memoContent.trimmingCharacters(in: .whitespacesAndNewlines)
-            let bottomText = resultVC.viewModel.fetchMemo()[indexPath.row].registerDate.checkDate() + "   " + resultVC.viewModel.fetchMemo()[indexPath.row].memoContent.trimmingCharacters(in: .whitespacesAndNewlines)
+            let bottomText = resultVC.viewModel.fetchTask()[indexPath.row].registerDate.checkDate() + "   " + resultVC.viewModel.fetchTask()[indexPath.row].memoContent.trimmingCharacters(in: .whitespacesAndNewlines)
 
             cell.titleLabel.attributedText = changeKeywordColor(titleText, keyword: viewModel.searchKeyword.value)
             cell.bottomLabel.attributedText = changeKeywordColor(bottomText, keyword: viewModel.searchKeyword.value)
@@ -227,7 +230,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
         } else {
-            return "\(resultVC.viewModel.fetchMemoCount())개 찾음"
+            return "\(resultVC.viewModel.fetchCurrentCount())개 찾음"
         }
     }
     
@@ -253,10 +256,11 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
                     }
                 }
             } else {
-                self?.resultVC.checkCancel(memo: self!.resultVC.viewModel.fetchMemo()[indexPath.row]) {
-                    self?.viewModel.fetchMemo()
+                self?.resultVC.checkCancel(memo: self!.resultVC.viewModel.fetchTask()[indexPath.row]) {
+                    //self?.viewModel.fetchMemo()
                     //self?.mainView.tableView.reloadData()
                 }
+                
             }
         }
         delete.image = UIImage(systemName: "trash")
@@ -287,16 +291,10 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
                         }
                     }
                 }
-//                self.mainView.tableView.reloadData()
             } else {
-//                self.resultVC.repository.updateIsFixed(memo: self.resultVC.tasks[indexPath.row])
-                self.resultVC.viewModel.updateIsFixed(memo: self.resultVC.viewModel.fetchMemo()[indexPath.row])
-                
-               // self.resultVC.mainView.tableView.reloadData()
+                self.resultVC.viewModel.updateIsFixed(memo: self.resultVC.viewModel.fetchTask()[indexPath.row])
             }
-//            self.tasks = self.repository.fetch()
-            self.viewModel.fetchMemo()
-            //self.mainView.tableView.reloadData()
+            
         }
         fix.backgroundColor = .systemOrange
         if tableView == mainView.tableView {
@@ -307,7 +305,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
                 fix.image = UIImage(systemName: image)
             }
         } else {
-            fix.image = resultVC.viewModel.fetchMemo()[indexPath.row].isFixed ? UIImage(systemName: "pin.slash.fill") : UIImage(systemName: "pin.fill")
+            fix.image = resultVC.viewModel.fetchTask()[indexPath.row].isFixed ? UIImage(systemName: "pin.slash.fill") : UIImage(systemName: "pin.fill")
         }
         return UISwipeActionsConfiguration(actions: [fix])
     }
@@ -335,8 +333,8 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
             navigationController?.pushViewController(vc, animated: true)
         } else {
             vc.isNew = false
-            vc.currentTask = resultVC.viewModel.fetchMemo()[indexPath.row]
-            vc.mainView.textView.text = resultVC.viewModel.fetchMemo()[indexPath.row].title + resultVC.viewModel.fetchMemo()[indexPath.row].memoContent
+            vc.currentTask = resultVC.viewModel.fetchTask()[indexPath.row]
+            vc.mainView.textView.text = resultVC.viewModel.fetchTask()[indexPath.row].title + resultVC.viewModel.fetchTask()[indexPath.row].memoContent
             navigationItem.backButtonTitle = "검색"
             navigationController?.pushViewController(vc, animated: true)
         }

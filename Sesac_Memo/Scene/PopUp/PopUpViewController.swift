@@ -5,12 +5,16 @@
 //  Created by HeecheolYoon on 2022/09/01.
 //
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class PopUpViewController: BaseViewController {
     
     private var mainView = PopUpView()
     
-    private let userDefaults = UserDefaults.standard
+    private let viewModel = PopUpViewModel()
+    
+    private let disposeBag = DisposeBag()
     
     override func loadView() {
         self.view = mainView
@@ -19,24 +23,26 @@ final class PopUpViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        bind()
+        
+    }
+    
+    private func bind() {
+        mainView.okButton.rx.tap
+            .bind(onNext: { [weak self] _ in
+                self?.dismissView()
+            })
+            .disposed(by: disposeBag)
     }
     
     override func configure() {
         super.configure()
         
-        userDefaults.set(true, forKey: "isFirst")
+        viewModel.setUserDefaults()
 
     }
-    
-    override func setUpController() {
-        super.setUpController()
-        
-        mainView.okButton.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
-        
-    }
-    
-    //MARK: - @objc
-    @objc func dismissView() {
+
+    private func dismissView() {
         self.dismiss(animated: true)
     }
 }

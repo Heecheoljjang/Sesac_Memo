@@ -39,14 +39,14 @@ final class SearchViewController: BaseViewController {
                 self?.mainView.tableView.reloadData()
             })
             .disposed(by: disposeBag)
+
     }
     
     func checkCancel(memo: UserMemo, completionHandler: @escaping () -> ()) {
         let alert = UIAlertController(title: "메모를 제거하시겠습니까??", message: "삭제하시면 다시 되돌릴 수 없습니다!!", preferredStyle: .alert)
         let ok = UIAlertAction(title: "확인", style: .destructive) { _ in
-//            self.repository.deleteMemo(memo: memo)
             self.viewModel.deleteMemo(memo: memo)
-            //self.mainView.tableView.reloadData()
+            self.mainView.tableView.reloadData()
             completionHandler()
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel)

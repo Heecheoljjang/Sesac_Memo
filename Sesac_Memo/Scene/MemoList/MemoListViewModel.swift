@@ -77,7 +77,9 @@ final class MemoListViewModel {
 //    }
     
     func setSearchKeyword(keyword: String) {
+        print("keyword: \(keyword)")
         searchKeyword.accept(keyword)
+        print("seaerechKeyword: \(searchKeyword.value)")
     }
     
     func numberSetting(number: Int) -> String {

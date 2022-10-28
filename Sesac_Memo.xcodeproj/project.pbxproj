@@ -13,11 +13,13 @@
 		9709B65A290433B1002122F0 /* MemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9709B659290433B1002122F0 /* MemoView.swift */; };
 		9709B65C290433BE002122F0 /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9709B65B290433BE002122F0 /* MemoViewController.swift */; };
 		9709B65E29043405002122F0 /* MemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9709B65D29043405002122F0 /* MemoViewModel.swift */; };
+		971130CF290AFC1400BD8F62 /* WritingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971130CE290AFC1400BD8F62 /* WritingViewModel.swift */; };
 		9717443528C2F5B2001BE4FA /* DateformatterCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717443428C2F5B2001BE4FA /* DateformatterCase.swift */; };
 		9717443728C2F718001BE4FA /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9717443628C2F718001BE4FA /* Date+Extension.swift */; };
 		971A67E728C23EB9004E4B61 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A67E628C23EB9004E4B61 /* SearchViewController.swift */; };
 		971A67E928C23EC1004E4B61 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A67E828C23EC1004E4B61 /* SearchView.swift */; };
 		971A67EC28C24072004E4B61 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A67EB28C24072004E4B61 /* SearchTableViewCell.swift */; };
+		9729B5B8290BEDF300D54E23 /* PopUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9729B5B7290BEDF300D54E23 /* PopUpViewModel.swift */; };
 		975E99CE28C080920072AC5D /* MemoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975E99CD28C080920072AC5D /* MemoListView.swift */; };
 		975E99D128C08C430072AC5D /* MemoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975E99D028C08C430072AC5D /* MemoListTableViewCell.swift */; };
 		975E99D328C08C9F0072AC5D /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975E99D228C08C9F0072AC5D /* UITableViewCell+Extension.swift */; };
@@ -56,11 +58,13 @@
 		9709B659290433B1002122F0 /* MemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoView.swift; sourceTree = "<group>"; };
 		9709B65B290433BE002122F0 /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
 		9709B65D29043405002122F0 /* MemoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewModel.swift; sourceTree = "<group>"; };
+		971130CE290AFC1400BD8F62 /* WritingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingViewModel.swift; sourceTree = "<group>"; };
 		9717443428C2F5B2001BE4FA /* DateformatterCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateformatterCase.swift; sourceTree = "<group>"; };
 		9717443628C2F718001BE4FA /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		971A67E628C23EB9004E4B61 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		971A67E828C23EC1004E4B61 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		971A67EB28C24072004E4B61 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		9729B5B7290BEDF300D54E23 /* PopUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewModel.swift; sourceTree = "<group>"; };
 		975E99CD28C080920072AC5D /* MemoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListView.swift; sourceTree = "<group>"; };
 		975E99D028C08C430072AC5D /* MemoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListTableViewCell.swift; sourceTree = "<group>"; };
 		975E99D228C08C9F0072AC5D /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 			children = (
 				975E99D928C0A23B0072AC5D /* WritingViewController.swift */,
 				975E99DB28C10A160072AC5D /* WritingView.swift */,
+				971130CE290AFC1400BD8F62 /* WritingViewModel.swift */,
 			);
 			path = Writing;
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 			children = (
 				97AC156028BFC812007089FD /* PopUpView.swift */,
 				97AC156228BFC81D007089FD /* PopUpViewController.swift */,
+				9729B5B7290BEDF300D54E23 /* PopUpViewModel.swift */,
 			);
 			path = PopUp;
 			sourceTree = "<group>";
@@ -378,6 +384,8 @@
 				9717443728C2F718001BE4FA /* Date+Extension.swift in Sources */,
 				971A67E728C23EB9004E4B61 /* SearchViewController.swift in Sources */,
 				971A67EC28C24072004E4B61 /* SearchTableViewCell.swift in Sources */,
+				9729B5B8290BEDF300D54E23 /* PopUpViewModel.swift in Sources */,
+				971130CF290AFC1400BD8F62 /* WritingViewModel.swift in Sources */,
 				975E99D728C097EC0072AC5D /* MemoListViewController+Extension.swift in Sources */,
 				975E99D128C08C430072AC5D /* MemoListTableViewCell.swift in Sources */,
 				9709B65C290433BE002122F0 /* MemoViewController.swift in Sources */,

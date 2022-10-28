@@ -12,7 +12,7 @@ import RealmSwift
 
 final class SearchViewModel {
     
-    var tasks = PublishSubject<Results<UserMemo>>()
+    var tasks = BehaviorSubject<Results<UserMemo>?>(value: nil)
     
     let repository = UserMemoRepository()
     
@@ -22,6 +22,11 @@ final class SearchViewModel {
     
     func fetchSearch(keyword: String) {
         tasks.onNext(repository.fetchSearch(keyword: keyword))
+        print(try! tasks.value())
+    }
+    
+    func fetchCurrentCount() -> Int {
+        return try! tasks.value()?.count ?? 0
     }
     
     func fetchMemoCount() -> Int {
@@ -32,8 +37,12 @@ final class SearchViewModel {
         return repository.fetch()
     }
     
+    func fetchTask() -> Results<UserMemo> {
+        return try! tasks.value() ?? fetchMemo()
+    }
+    
     func updateIsFixed(memo: UserMemo) {
         repository.updateIsFixed(memo: memo)
-        tasks.onNext(fetchMemo())
+//        tasks.onNext(fetchMemo())
     }
 }
